@@ -11,10 +11,7 @@ class News extends React.Component {
         } else {
             return (
                 <div className='news'>
-                    <div className='news__row'>
-                        <div className='news__box'>{this.props.weather.weather[0].main}</div>
-                        <FontAwesomeIcon icon={iconPicker(this.props.weather.weather[0].id)}/>
-                    </div>
+                    <div className='news__box'>{iconPicker(this.props.weather)[0]}</div>
                 </div>
             )
         }
