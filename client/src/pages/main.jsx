@@ -1,16 +1,26 @@
 import React from 'react';
 import Slide from '../components/Slide/Slide';
 import axios from 'axios';
+import './main.scss';
+import News from '../components/News/News';
 
 class Main extends React.Component {
 
-    state = {
-        stage: {}
+    constructor(props) {
+        super(props);
+        this.state = {
+            stage: {},
+            weather: {}
+        }
+        this.apiKey = '4774ad80334f760f9b45af484c39e9fe';
+        this.getCoordinates = this.getCoordinates.bind(this);
+        this.getLocation = this.getLocation.bind(this);
     }
 
     componentDidMount() {
+        this.getLocation();
         axios.get('http://localhost:8080/scenarios').then(data => {
-            console.log(data.data.root)
+            console.log(data.data)
             this.setState(
                 {
                     stage: data.data.root
@@ -18,6 +28,26 @@ class Main extends React.Component {
             )
         })
     }
+
+
+    getCoordinates(position) {
+        const long = position.coords.longitude;
+        const lat = position.coords.latitude;
+        console.log(lat, long);
+        axios.get('http://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+long+'&appid='+this.apiKey).then(results => {
+          this.setState({
+              weather: results.data
+          }) 
+        })
+    }
+
+    getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(this.getCoordinates);
+        }
+    }
+
+    
 
     nextSlide(slide) {
         this.setState(
@@ -29,8 +59,9 @@ class Main extends React.Component {
 
     render() {
         return (
-            <main>
-                <Slide story={this.state.stage} nextHandler={this.nextSlide.bind(this)}/>
+            <main className='page'>
+                <News weather={this.state.weather}/>
+                {/*<Slide story={this.state.stage} nextHandler={this.nextSlide.bind(this)}/>*/}
             </main>
         )
     }

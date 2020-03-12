@@ -18,7 +18,9 @@ const firstStory = [
     new Story(1, 'You begin foaming at the mouth and fall into a coma', 'Game Over', 'try again'),
     new Story(6, 'The pain subsides and you regain feeling', 'Wait for help', 'keep heading home'),
     new Story(4, 'You sit in the ravene for hours until a pack of raccoons start harrasing you', 'die of rabies', 'Game over'),
-    new Story(7, 'You drag yourself home and luckily posion control picks up', 'you survived', 'yay')
+    new Story(7, 'You drag yourself home and luckily posion control picks up', 'you survived', 'yay'),
+    new Story(14, 'Bite begins swelling 2x the size of your other foot', 'you pass out', 'venom throws through you dead'),
+    new Story(9, 'Your leg begins tingling and you fear the venom may be spreading', 'elevate leg on tree stump', 'position legs downwards')
 ]
 
 const storyTree = new BinarySearchTree();
