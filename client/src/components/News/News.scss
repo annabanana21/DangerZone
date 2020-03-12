@@ -1,0 +1,21 @@
+@import '../../styles/fonts';
+@import '../../styles/colors';
+
+.news {
+    width: 80%;
+    height: 400px;
+    background-color: blueviolet;
+    border-radius: 5px;
+
+    &__row {
+        height: 50%;
+        width: 100%;
+    }
+
+    &__box {
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

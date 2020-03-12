@@ -1,0 +1,27 @@
+@import '../../styles/fonts';
+@import '../../styles/colors';
+
+.bar {
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+
+    &__title {
+        font-family: 'Roboto Mono';
+        font-size: 1.5rem;
+        color: $primary;
+        text-align: center;
+        margin: 0;
+    }
+
+    &__box {
+        width: 116px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border: 2px solid black;
+    }
+}
