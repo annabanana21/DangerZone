@@ -4,6 +4,7 @@ import axios from 'axios';
 import './main.scss';
 import News from '../components/News/News';
 import StoryBoard from '../components/StoryBoard/StoryBoard';
+import Health from '../components/Health/Health';
 
 class Main extends React.Component {
 
@@ -11,7 +12,8 @@ class Main extends React.Component {
         super(props);
         this.state = {
             stage: {},
-            weather: {}
+            weather: {},
+            health: 100
         }
         this.apiKey = '4774ad80334f760f9b45af484c39e9fe';
         this.getCoordinates = this.getCoordinates.bind(this);
@@ -65,6 +67,7 @@ class Main extends React.Component {
                 <News weather={this.state.weather}/>
                 {/*<Slide story={this.state.stage} nextHandler={this.nextSlide.bind(this)}/>*/}
                 <StoryBoard />
+                <Health health={this.state.health}/>
             </main>
         )
     }

@@ -1,0 +1,33 @@
+@import '../../styles/colors';
+@import '../../styles/fonts';
+
+.health {
+    width: 15rem;
+    min-width: 5rem;
+    height: 1.5rem;
+    border-radius: 7px;
+    border: 3px solid white;
+    box-sizing: border-box;
+
+    &__bar {
+        background-color: $primary;
+        height: 100%;
+        width: 80%;
+        border-radius: 7px;
+    }
+
+    &__box {
+        position: absolute;
+        bottom: 2rem;
+        right: 2rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__title {
+        margin: 0;
+        font-family: 'Roboto Mono';
+        margin-bottom: 0.5rem;
+        color: white;
+    }
+}
