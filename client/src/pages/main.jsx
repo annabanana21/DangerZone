@@ -3,6 +3,7 @@ import Slide from '../components/Slide/Slide';
 import axios from 'axios';
 import './main.scss';
 import News from '../components/News/News';
+import StoryBoard from '../components/StoryBoard/StoryBoard';
 
 class Main extends React.Component {
 
@@ -35,6 +36,7 @@ class Main extends React.Component {
         const lat = position.coords.latitude;
         console.log(lat, long);
         axios.get('http://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+long+'&appid='+this.apiKey).then(results => {
+            console.log(results.data);
           this.setState({
               weather: results.data
           }) 
@@ -62,6 +64,7 @@ class Main extends React.Component {
             <main className='page'>
                 <News weather={this.state.weather}/>
                 {/*<Slide story={this.state.stage} nextHandler={this.nextSlide.bind(this)}/>*/}
+                <StoryBoard />
             </main>
         )
     }
