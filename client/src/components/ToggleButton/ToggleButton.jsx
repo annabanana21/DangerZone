@@ -1,5 +1,5 @@
 import React from 'react';
-import clip from '../../assets/Icons/clipboard.png';
+import clip from '../../assets/Icons/clipboard-clip.png';
 import './ToggleButton.scss';
 
 function ToggleButton(props) {

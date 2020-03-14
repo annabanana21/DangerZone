@@ -1,3 +1,6 @@
+@import '../../styles/colors';
+@import '../../styles/fonts';
+
 .story {
     width: 100vw;
     height: 100vh;
@@ -10,6 +13,29 @@
     align-items: center;
 
     &__board {
-        height: 110%;
+        height: 90%;
+    }
+
+    &__wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__write {
+        width: 420px;
+        height: 580px;
+        background-color: white;
+        position: fixed;
+        border: 2px black solid;
+        top: 23%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__title {
+        font-size: 2.5rem;
+        font-family: 'Roboto Bold';
     }
 }
