@@ -1,17 +1,6 @@
-@import '../styles/colors';
+@import '../../styles/colors';
 
-.page {
-    background-color: $bgLight;
-    min-height: calc(100vh - 80px);
-    width: 100vw;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    padding-top: 2rem;
-    background: url('../assets/BG4.svg');
-    background-position: center;
-    background-size: cover;
-
+.button {
     &__task {
         width: 150px;
         height: 150px;
