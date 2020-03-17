@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 8080;
+const storyRoute = require('./story');
 
 const stories = require('./scenarios');
 
@@ -15,10 +16,7 @@ app.use(function(req, res, next) {
   
 app.use(cors());
 
-
-app.get('/scenarios', (req, res) => {
-  res.send(stories);
-})
+app.use("/story", storyRoute);
 
 app.listen(port, () => {
   console.log('Listening on', port);
