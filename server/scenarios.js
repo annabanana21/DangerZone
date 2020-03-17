@@ -11,7 +11,7 @@ class Story {
     }
 }
 
-const firstStory = [
+const snakeStory = [
     new Story(8, 'You get bit by a snake', 'run back to base', 'sit down'),
     new Story(10, 'Your leg is aching and begins bleeding', 'Remove any tight clothes or jewlery', 'create a tournequette'),
     new Story(3, 'Your leg goes numb after 5 minutes of running and you fall to the ground', 'Begin sucking poison out', 'Rinse with water and tie shirt'),
@@ -25,8 +25,12 @@ const firstStory = [
 
 const storyTree = new BinarySearchTree();
 
-firstStory.forEach(story => {
+snakeStory.forEach(story => {
     storyTree.insert(story)
 })
+
+const storyGenerator = (category) => {
+    
+}
 
 module.exports = storyTree;

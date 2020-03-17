@@ -14,12 +14,6 @@ const iconPicker = (weatherObj) => {
     else if (weatherObj.wind.speed > 8) {
         return ['Tornado Warning', tornado];
     }
-    else if (weatherObj.weather[0].id < 322) {
-        return ['Acid Rain', rain];
-    }
-    else if (weatherObj.weather[0].id > 800) {
-        return ['Meteor Showers', astroid];
-    }
     else if (weatherObj.weather[0].id >=600 && weatherObj.weather[0].id < 623) {
         return ['Deep Freeze', cold];
     } 

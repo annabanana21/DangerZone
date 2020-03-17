@@ -22,14 +22,6 @@ class Main extends React.Component {
 
     componentDidMount() {
         this.getLocation();
-        axios.get('http://localhost:8080/scenarios').then(data => {
-            console.log(data.data)
-            this.setState(
-                {
-                    stage: data.data.root
-                }
-            )
-        })
     }
 
 
@@ -66,7 +58,7 @@ class Main extends React.Component {
             <main className='page'>
                 <News weather={this.state.weather}/>
                 {/*<Slide story={this.state.stage} nextHandler={this.nextSlide.bind(this)}/>*/}
-                <StoryBoard />
+                <StoryBoard story={this.props.story} storyLeft={this.props.storyLeft} change={this.props.change}/>
                 <Health health={this.state.health}/>
             </main>
         )
