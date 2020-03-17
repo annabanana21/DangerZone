@@ -24,10 +24,10 @@ export default class StoryBoard extends React.Component {
         const amount = this.props.story.length - this.props.storyLeft.length;
         let display = [];
         for (let i=0; i<=amount; i++) {
-            display.push(<h3 className='story__stage' onClick={this.props.change}>{this.props.story[i]}</h3>)
+            display.push(<h3 className='story__stage' onClick={this.props.change}>{this.props.story[i].title}</h3>)
         }
         for (let i=amount+1; i < this.props.story.length; i++) {
-            display.push(<h3 className='story__stage--blur'>{this.props.story[i]}</h3>)
+            display.push(<h3 className='story__stage--blur'>{this.props.story[i].title}</h3>)
         }
         return display;
     }

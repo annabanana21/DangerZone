@@ -3,7 +3,7 @@ const router = express.Router();
 const scenario = require('./scenarios');
 
 router.get('/:category', (req, res) => {
-    res.send(['This', 'is', 'a', 'test']);
+    res.send([scenario]);
 })
 
 
