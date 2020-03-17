@@ -29,8 +29,13 @@ snakeStory.forEach(story => {
     storyTree.insert(story)
 })
 
+const storyObj = {
+    story: storyTree,
+    title: 'Snake Bite'
+}
+
 const storyGenerator = (category) => {
     
 }
 
-module.exports = storyTree;
+module.exports = storyObj;

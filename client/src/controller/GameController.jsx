@@ -1,6 +1,7 @@
 import React from 'react';
 import Main from '../pages/main';
 import axios from 'axios';
+import Display from '../pages/display';
 
 class GameController extends React.Component {
 
@@ -35,7 +36,7 @@ class GameController extends React.Component {
                 <Main story={this.state.story} storyLeft={this.state.storyLeft} change={() => this.change()}/>
             )
         } else if (this.state.isPlaying) {
-            return null;
+            return <Display story={this.state.storyLeft[0]} change={() => this.change()}/>;
         }
     }
 }

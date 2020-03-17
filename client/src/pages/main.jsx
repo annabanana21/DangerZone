@@ -43,21 +43,10 @@ class Main extends React.Component {
         }
     }
 
-    
-
-    nextSlide(slide) {
-        this.setState(
-            {
-                stage: slide
-            }
-        )
-    }
-
     render() {
         return (
             <main className='page'>
                 <News weather={this.state.weather}/>
-                {/*<Slide story={this.state.stage} nextHandler={this.nextSlide.bind(this)}/>*/}
                 <StoryBoard story={this.props.story} storyLeft={this.props.storyLeft} change={this.props.change}/>
                 <Health health={this.state.health}/>
             </main>
