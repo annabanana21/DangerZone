@@ -8,47 +8,12 @@ import Health from '../components/Health/Health';
 
 class Main extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            stage: {},
-            weather: {},
-            health: 100
-        }
-        this.apiKey = '4774ad80334f760f9b45af484c39e9fe';
-        this.getCoordinates = this.getCoordinates.bind(this);
-        this.getLocation = this.getLocation.bind(this);
-    }
-
-    componentDidMount() {
-        this.getLocation();
-    }
-
-
-    getCoordinates(position) {
-        const long = position.coords.longitude;
-        const lat = position.coords.latitude;
-        console.log(lat, long);
-        axios.get('http://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+long+'&appid='+this.apiKey).then(results => {
-            console.log(results.data);
-          this.setState({
-              weather: results.data
-          }) 
-        })
-    }
-
-    getLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(this.getCoordinates);
-        }
-    }
-
     render() {
         return (
             <main className='page'>
-                <News weather={this.state.weather}/>
+                <News weather={this.props.weather}/>
                 <StoryBoard story={this.props.story} storyLeft={this.props.storyLeft} change={this.props.change}/>
-                <Health health={this.state.health}/>
+                <Health health={100}/>
             </main>
         )
     }

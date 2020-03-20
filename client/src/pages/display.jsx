@@ -2,6 +2,7 @@ import React from 'react';
 import './display.scss';
 import Slide from '../components/Slide/Slide';
 import Complete from '../components/Complete/Complete';
+import BackgroundVideo from '../components/BackgroundVideo/BackgroundVideo';
 
 class Display extends React.Component {
 
@@ -17,7 +18,7 @@ class Display extends React.Component {
     }
 
     nextSlide(slide) {
-        if (slide) {
+        if (slide.right) {
             this.setState(
                 {
                     stage: slide
@@ -35,7 +36,9 @@ class Display extends React.Component {
     render() {
         if (!this.state.finish) {
             return (
-                <Slide story={this.state.stage} nextHandler={(slide) => this.nextSlide(slide)}/>
+                <div>
+                    <BackgroundVideo><Slide story={this.state.stage} nextHandler={(slide) => this.nextSlide(slide)}/></BackgroundVideo>
+                </div>
             )
         } else {
             return <Complete change={this.props.change}/>
