@@ -2,6 +2,7 @@ import React from 'react';
 import Main from '../pages/main';
 import axios from 'axios';
 import Display from '../pages/display';
+import BinarySearchTree from '../functions/binary';
 
 class GameController extends React.Component {
 
@@ -13,11 +14,25 @@ class GameController extends React.Component {
         userStats: []
     }
 
+    formatData(arr) {
+        return arr.map(object => {
+            let newTree = new BinarySearchTree()
+            newTree.insertAll(object.scenario)
+            return {
+                intro: object.intro,
+                title: object.title,
+                category: object.category,
+                tree: newTree
+            }
+        })
+    }
+
     componentDidMount() {
-        axios.get('http://localhost:8080/story/snow').then(res => {
+        axios.get('http://localhost:8080/story/heat').then(res => {
+            let storyLine = this.formatData(res.data)
             this.setState({
-                story: res.data,
-                storyLeft: res.data
+                story: storyLine,
+                storyLeft: storyLine
             })
         })
     }
@@ -30,7 +45,7 @@ class GameController extends React.Component {
     }
 
     render() {
-
+        console.log(this.state.story)
         if (this.state.isHome) {
             return (
                 <Main story={this.state.story} storyLeft={this.state.storyLeft} change={() => this.change()}/>

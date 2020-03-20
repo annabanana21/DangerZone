@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const scenario = require('./scenarios');
+const m = require('./scenarios');
 
 router.get('/:category', (req, res) => {
-    res.send([scenario]);
+    console.log('here')
+    let catArray = m.generateBinary(req.params.category)
+    res.json(catArray);
 })
-
-
 
 module.exports = router;
