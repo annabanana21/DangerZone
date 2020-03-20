@@ -12,7 +12,7 @@ class Display extends React.Component {
 
     componentDidMount() {
         this.setState({
-            stage: this.props.story.story.root
+            stage: this.props.story.tree.root
         })
     }
 
