@@ -15,6 +15,8 @@ class Story {
 const snakeStory = {
     intro: "You’re on your way to gather supplies and medicine. To conserve the gas left in your car you decide to walk the 2km to the nearest pharmacy. You can shave off a km of the walk by cutting through a ravine, and also avoid and rogue criminals. Halfway there you trip over what you first think is a tree stump but then you feel a sharp pain in your right ankle...",
     title: 'Snake Bite',
+    background: 'snakeStory.jpg',
+    sound: 'Snake.wav',
     category: 'heat',
     scenario: [
     new Story(8, 'You get bit by a snake', 'run back to base', 'sit down'),
@@ -31,6 +33,8 @@ const snakeStory = {
 const frozenPlunge = {
     intro: 'Your mission to save your friend is a success. However, on the drive home you lose control of the car and it swerves off the road...',
     title: 'Ice Plunge',
+    background: 'Frozen-Lake.jpg',
+    sound: 'Water.wav',
     category: 'freeze',
     scenario: [
         new Story(50, "Your car has gained incredible momentum and eventually makes impact with what sounds like glass. You hear cracking and suddenly your car plunges into water...", "Luckily you know your exact coordinates so call the police and wait for help", "Roll down your window and escape"),
@@ -74,6 +78,8 @@ const frozenPlunge = {
 const avalanche = {
     intro: 'You’re on your way to gather supplies and medicine. To conserve the gas left in your car you decide to walk to the nearest pharmacy. It’s a quick walk but it’s up a steep mountain (at least it feels that way). Halfway up you notice vibration and hear a rumbling…',
     title: 'Avalanche',
+    background: 'Avalanche.mp4',
+    sound: 'Avalanche.wav',
     category: 'freeze',
     scenario: [
         new Story(50, 'What began as a small cloud of snow is now a monstrous tidal wave. You never could’ve imagined you’d encounter an avalanche so what do you do…', 'Move sideways hoping the force of the avalanche will mostly miss you and brace for impact', 'Start running down the hill. You’re pretty fast and can most likely outrun it'),
@@ -104,7 +110,8 @@ const avalanche = {
 
 const earthquake = {
     title: 'Earthquake',
-    category: 'earthquake',
+    category: 'earth',
+    sound: 'Earthquake.wav',
     scenario: [
         new Story(50, 'The ground begins to furiously shake...', 'run for cover', 'run out into the open road'),
         new Story(70, 'You made it safely to the middle of the road and now you', 'stretch your body to absorb the aftershock', 'crouch down staying as low to the ground as possible'),
@@ -117,10 +124,10 @@ const earthquake = {
         new Story(40, "The overpass crumbles due to the earthquake's pressure and some debris falls on top of you.", null, null, 0.1)
     ]
 }
-
 const buried = {
     title: 'Buried Alive',
-    category: 'earthquake',
+    category: 'earth',
+    background: 'dark.jpg',
     scenario: [
         new Story(50, "It's very dark and you realize you around lying down. You try to sit up but hit your head on what feels like wood.", "Feel your surroundings in case there's something you can use to escape", "Start the lighter that's in your pocket to see what's going on around you"),
         new Story(60, 'The lighter quickly eats up any available oxygen you have left. In a small space such as a coffin you have at most 2 hours worth of oxygen.', null, null, 0.5),
@@ -137,6 +144,8 @@ const buried = {
 const plane = {
     title: 'Crash Landing',
     category: 'heat',
+    background: 'sky.mp4',
+    sound: 'plane.wav',
     scenario: [
         new Story(100, "Once seated you notice there are a bunch of buttons a levers but you have no idea what they do. There's a steering wheel that seems easy enough...", 'Take control of the wheel', 'Look for a guide/manual'),
         new Story(130, "In your state of panic you are able to scan the manual long enough to figure out what the throttle does", 'Look for an open field', 'Start looking for an open body of water'),
@@ -183,6 +192,8 @@ const plane = {
 const tornado = {
     title: "Tornado", 
     category: 'wind',
+    background: 'Tornado.mp4',
+    sound: 'Wind.wav',
     scenario: [
         new Story(50, "Before you have time to drive out of it's way the tornado is within 100 meters of you", 'Abandon your car', "Stay in your car hoping it'll miss you"),
         new Story(60, "The tornado is quickly approaching and will most likely strike your car", 'buckle your seat belt and curl up on your chair', 'Move to the seat farthest to the back right and buckle your seat belt'),
@@ -207,22 +218,6 @@ const fight = {
 
 const scenarios = [tornado, plane, buried, earthquake, avalanche, frozenPlunge, snakeStory];
 
-
-const storyTree = new BinarySearchTree();
-
-frozenPlunge.scenario.forEach(story => {
-    storyTree.insert(story)
-})
-
-/*const binary = (story) => {
-    let newTree = new BinarySearchTree();
-    story.scenario.forEach(scenario => {
-        newTree.insert(scenario);
-    })
-    story.tree = newTree;
-    return story
-}*/
-
 const createBinaryObject = (story) => {
     let newTree = new BinarySearchTree();
     story.scenario.forEach(slide => {
@@ -234,11 +229,6 @@ const createBinaryObject = (story) => {
         category: story.category,
         tree: newTree
     }
-}
-
-const storyObj = {
-    story: frozenPlunge,
-    title: 'Frozen'
 }
 
 const generateBinary = (key) => {

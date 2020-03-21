@@ -13,7 +13,7 @@ class Main extends React.Component {
             <main className='page'>
                 <News weather={this.props.weather}/>
                 <StoryBoard story={this.props.story} storyLeft={this.props.storyLeft} change={this.props.change}/>
-                <Health health={100}/>
+                <Health health={this.props.health.health}/>
             </main>
         )
     }
