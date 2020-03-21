@@ -8,19 +8,20 @@ import tornado from '../assets/Icons/Hurricane.svg';
 
 
 const iconPicker = (weatherObj) => {
+    console.log(weatherObj)
     if (weatherObj.weather[0].id < 300) {
         return ['Hurricane', hurricane, 'rain'];
     }
     else if (weatherObj.wind.speed > 8) {
         return ['Tornado Warning', tornado, 'wind'];
     }
-    else if (weatherObj.weather[0].id >=600 && weatherObj.weather[0].id < 623) {
+    else if (weatherObj.weather[0].id >=600 && weatherObj.weather[0].id < 623 || weatherObj.main.temp < 273.15) {
         return ['Deep Freeze', cold, 'freeze'];
     } 
     else if (weatherObj.main.temp > 281) {
         return ['Heat Wave', heat, 'heat'];
     } else {
-        return ['Earthquake', earth, 'shake'];
+        return ['Earthquake', earth, 'earth'];
     }
 }
 
