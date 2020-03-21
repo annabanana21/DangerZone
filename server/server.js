@@ -7,6 +7,7 @@ const storyRoute = require('./story');
 app.use(express.json());
   
 app.use(cors());
+app.use("/public", express.static(__dirname + '/public'));
 
 app.use("/story", storyRoute);
 

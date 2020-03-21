@@ -3,46 +3,41 @@ import './display.scss';
 import Slide from '../components/Slide/Slide';
 import Complete from '../components/Complete/Complete';
 import BackgroundVideo from '../components/BackgroundVideo/BackgroundVideo';
+import SlideController from '../controller/SlideController';
 
 class Display extends React.Component {
 
-    state = {
-        stage: '',
-        finish: false
-    }
-
     componentDidMount() {
-        this.setState({
-            stage: this.props.story.tree.root
-        })
+        this.audio = new Audio('http://localhost:8080/public/audio/'+this.props.story.audio);
+        this.audio.load();
+        this.audio.loop = true;
+        this.playAudio();
     }
 
-    nextSlide(slide) {
-        if (slide.right) {
-            this.setState(
-                {
-                    stage: slide
-                }
-            )
-        } else {
-            this.setState(
-                {
-                    finish: true
-                }
-            )
+    componentWillUnmount() {
+        this.audio.pause();
+    }
+
+    playAudio() {
+        const audioPromise = this.audio.play()
+        if (audioPromise !== undefined) {
+          audioPromise
+            .then(_ => {
+              // autoplay started
+            })
+            .catch(err => {
+              // catch dom exception
+              console.info(err)
+            })
         }
     }
 
     render() {
-        if (!this.state.finish) {
-            return (
-                <div>
-                    <BackgroundVideo><Slide story={this.state.stage} nextHandler={(slide) => this.nextSlide(slide)}/></BackgroundVideo>
-                </div>
-            )
-        } else {
-            return <Complete change={this.props.change}/>
-        }
+        return (
+            <div>
+                <BackgroundVideo story={this.props.story}><SlideController lose={this.props.lose} story={this.props.story} change={this.props.change} nextStory={this.props.nextStory}/></BackgroundVideo>
+            </div>
+        )
     }
 }
 

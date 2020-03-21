@@ -49,5 +49,9 @@
             color: transparent;
             text-shadow: 0 0 5px rgba(0,0,0,0.5);
         }
+        &--cross {
+            @extend .story__stage;
+            text-decoration: line-through;
+        }
     }
 }
