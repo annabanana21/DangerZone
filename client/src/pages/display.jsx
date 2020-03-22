@@ -18,6 +18,17 @@ class Display extends React.Component {
         this.audio.pause();
     }
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.story !== this.props.story) {
+            console.log('here');
+            this.audio.pause();
+            this.audio = new Audio('http://localhost:8080/public/audio/'+this.props.story.audio);
+            this.audio.load();
+            this.audio.loop = true;
+            this.playAudio();
+        }
+    }
+
     playAudio() {
         const audioPromise = this.audio.play()
         if (audioPromise !== undefined) {
@@ -33,6 +44,7 @@ class Display extends React.Component {
     }
 
     render() {
+        console.log('I re-mount')
         return (
             <div>
                 <BackgroundVideo story={this.props.story}><SlideController lose={this.props.lose} story={this.props.story} change={this.props.change} nextStory={this.props.nextStory}/></BackgroundVideo>

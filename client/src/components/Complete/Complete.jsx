@@ -15,8 +15,8 @@ class Complete extends React.Component {
                 <div className='complete__prompt'>{this.props.story.story}</div>
                 <h4>{word}</h4>
                 <div className='complete__wrap'>
-                    <div className='complete__button' onClick={this.props.lose}>Home</div>
-                    <div className='complete__button'>Next</div>
+                    <div className='complete__button' onClick={() => this.props.lose(this.props.story.loss*100, true)}>Home</div>
+                    <div className='complete__button' onClick={() => this.props.lose(this.props.story.loss*100, false)}>Next</div>
                 </div>
             </div>
         )

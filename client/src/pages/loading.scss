@@ -1,0 +1,27 @@
+@import '../styles/colors';
+@import '../styles/fonts';
+
+* {
+    margin: 0;
+}
+
+
+.load {
+    width: 100vw;
+    height: calc(100vh - 80px);
+    background: url('../assets/Lantern.jpg');
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__title {
+        font-size: 8rem;
+        font-family: 'Roboto Bold';
+        color: white;
+        position: absolute;
+        left: 200px;
+    }
+}

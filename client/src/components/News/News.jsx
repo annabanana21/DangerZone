@@ -24,6 +24,7 @@ class News extends React.Component {
                     <div className='news__wrap'>
                         <div className='news__box--small'>
                             <img src={epidemic} className='news__icon--small'/>
+                            <h4>{this.props.population[1]}</h4>
                         </div>
                         <div className='news__box--small'></div>
                     </div>
@@ -31,6 +32,7 @@ class News extends React.Component {
                         <div className='news__box--small'></div>
                         <div className='news__box--small'>
                             <img src={danger} className='news__icon--small'/>
+                            <h4>{this.props.population[0]}</h4>
                         </div>
                     </div>
                 </div>
