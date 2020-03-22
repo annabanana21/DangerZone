@@ -17,7 +17,7 @@ const snakeStory = {
     title: 'Snake Bite',
     background: 'snakeStory.jpg',
     sound: 'Snake.wav',
-    category: 'heat',
+    category: 'earth',
     scenario: [
     new Story(8, 'You get bit by a snake', 'run back to base', 'sit down'),
     new Story(10, 'Your leg is aching and begins bleeding', 'Remove any tight clothes or jewlery', 'create a tournequette'),
@@ -143,7 +143,7 @@ const buried = {
 
 const plane = {
     title: 'Crash Landing',
-    category: 'heat',
+    category: 'wind',
     background: 'sky.mp4',
     sound: 'plane.wav',
     scenario: [
@@ -209,14 +209,72 @@ const tornado = {
     ]
 }
 
-const fight = {
-    title: 'Street Fight',
-    category: 'neutral',
+const blizzard = {
+    title: "Blizzard",
+    category: 'freeze',
+    background: 'snow.mp4',
+    sound: 'Blizzard.wav',
+    scenario: [
+        new Story(80, "The snow begins falling fast and temperatures are hitting all time lows. Do you...", 'Start looking for wood to build a fire', 'Look for materials to build a shelter'),
+        new Story(40, "Luckily the pond your car plunged into was surrounded by plenty of trees", 'Look for dying trees or decayed logs', 'Break thin branches off nearby trees'),
+        new Story(10, "You have a lighter and it survived the plunge in the water. Lighting a fire without tinder is hard enough but the wind chill makes it impossible. So you...", "You've already walked quite a distance. If you keep heading south opposite the wind you're bound to find a building", 'Start thinking about building a shelter'),
+        new Story(5, "While you're walking the wind chill quickly makes your body temperature plummet. The risk of  hypothermia increases every minute you are exposed to the cold weather. You and your partner become irrationally hot and remove your clothes. You both freeze to death and even worse are found naked.", null, null, 0.70),
+        new Story(42, "Most of the surrounding wood is too wet to light even with the best survival gear", "You've already walked quite a distance. If you keep heading south opposite the wind you're bound to find a building", 'Start thinking about building a shelter'),
+        new Story(41, "While you're walking the wind chill quickly makes your body temperature plummet. The risk of  hypothermia increases every minute you are exposed to the cold weather. You and your partner become irrationally hot and remove your clothes. You both freeze to death and even worse are found naked.", null, null, 0.70),
+        new Story(45, "Lucky for you there is pre-existing snow on the ground which you are able to shape and mold", "You and your partner start rolling/packing snow to create an igloo", 'Dig a snow cave into a nearby snow bank or drift'),
+        new Story(44, "Before you have enough packed snow to make one wall you and your partner have exerted enough energy to justify a break. Little do you know lying down on snow eliminates all your body heat. You take a nap but never wake up.", null, null, 0.75),
+        new Story(55, "When building your shelter there's conflicting opinions on how to ventilate it. Your partner believes the shelter should be packed as tight as possible with little to no opening while you suggest poking holes in the shelter. Do you...", "Follow your partner he's camped and hiked many more times than you", 'Poke holes in the shelter anyways'),
+        new Story(50, "Your shelter is nearly complete. While your partner is finishing his last shift digging it out you decide to prepare for a long storm ", "Search for clean snow to hydrate yourselves.", 'Search for branches and leaves to fortify your snow cave'),
+        new Story(46, "It seems like a good idea at first and you could really use something to drink. However, your body must melt the ice before it can be consumed. Consuming the snow exhausts you and your body temperature continue to drop until you pass out and eventually freeze.", null, null, 0.75),
+        new Story(52, "You are able to find some movable boulders and weathered wooden planks from a nearby dock.", "Once you and your partner are huddled inside the snow cave, stack the rocks in front of the opening to block any wind.", 'Once you and your partner are huddled inside tightly stack the planks in front of the opening to block any wind'),
+        new Story(51, "Your strategy is a success! The boulders block the wind while leaving enough room to let you and your partner breathe. The storm eventually dies down and the temperature rises enough for you to find your way home. You could've used some more air circulation though.", null, null, 0.15),
+        new Story(53, "Your snow cave is warm enough however when you stacked the planks you blocked any incoming oxygen. Fun Fact: many people stranded in blizzards actually die of carbon monoxide poisoning.", null, null, 0.75),
+        new Story(65, "Your shelter is nearly complete. While your partner is finishing his last shift digging it out you decide to prepare for a long storm ", "Search for clean snow to hydrate yourselves.", 'Search for branches and leaves to fortify your snow cave'),
+        new Story(64, "It seems like a good idea at first and you could really use something to drink. However, your body must melt the ice before it can be consumed. Consuming the snow exhausts you and your body temperature continue to drop until you pass out and eventually freeze.", null, null, 0.75),
+        new Story(68, "You are able to find some movable boulders and weathered wooden planks from a nearby dock.", "Once you and your partner are huddled inside the snow cave, stack the rocks in front of the opening to block any wind.", 'Once you and your partner are huddled inside tightly stack the planks in front of the opening to block any wind'),
+        new Story(66, "Your strategy is a success! The boulders block the wind while leaving enough room to let you and your partner breathe. The storm eventually dies down and the temperature rises enough for you to find your way home.", null, null, 0),
+        new Story(69, "Your snow cave is warm enough however when you stacked the planks you blocked any incoming oxygen. Fun Fact: many people stranded in blizzards actually die of carbon monoxide poisoning.", null, null, 0.75),
+        new Story(15, "Lucky for you there is pre-existing snow on the ground which you are able to shape and mold", "You and your partner start rolling/packing snow to create an igloo", 'Dig a snow cave into a nearby snow bank or drift'),
+        new Story(13, "Before you have enough packed snow to make one wall you and your partner have exerted enough energy to justify a break. Little do you know lying down on snow eliminates all your body heat. You take a nap but never wake up.", null, null, 0.75),
+        new Story(25, "When building your shelter there's conflicting opinions on how to ventilate it. Your partner believes the shelter should be packed as tight as possible with little to no opening while you suggest poking holes in the shelter. Do you...", "Follow your partner he's camped and hiked many more times than you", 'Poke holes in the shelter anyways'),
+        new Story(18, "Your shelter is nearly complete. While your partner is finishing his last shift digging it out you decide to prepare for a long storm ", "Search for clean snow to hydrate yourselves.", 'Search for branches and leaves to fortify your snow cave'),
+        new Story(17, "It seems like a good idea at first and you could really use something to drink. However, your body must melt the ice before it can be consumed. Consuming the snow exhausts you and your body temperature continue to drop until you pass out and eventually freeze.", null, null, 0.75),
+        new Story(21, "You are able to find some movable boulders and weathered wooden planks from a nearby dock.", "Once you and your partner are huddled inside the snow cave, stack the rocks in front of the opening to block any wind.", 'Once you and your partner are huddled inside tightly stack the planks in front of the opening to block any wind'),
+        new Story(20, "Your strategy is a success! The boulders block the wind while leaving enough room to let you and your partner breathe. The storm eventually dies down and the temperature rises enough for you to find your way home. You could've used some more air circulation though.", null, null, 0.15),
+        new Story(22, "Your snow cave is warm enough however when you stacked the planks you blocked any incoming oxygen. Fun Fact: many people stranded in blizzards actually die of carbon monoxide poisoning.", null, null, 0.75),
+        new Story(28, "Your shelter is nearly complete. While your partner is finishing his last shift digging it out you decide to prepare for a long storm ", "Search for clean snow to hydrate yourselves.", 'Search for branches and leaves to fortify your snow cave'),
+        new Story(26, "It seems like a good idea at first and you could really use something to drink. However, your body must melt the ice before it can be consumed. Consuming the snow exhausts you and your body temperature continue to drop until you pass out and eventually freeze.", null, null, 0.75),
+        new Story(30, "You are able to find some movable boulders and weathered wooden planks from a nearby dock.", "Once you and your partner are huddled inside the snow cave, stack the rocks in front of the opening to block any wind.", 'Once you and your partner are huddled inside tightly stack the planks in front of the opening to block any wind'),
+        new Story(29, "Your strategy is a success! The boulders block the wind while leaving enough room to let you and your partner breathe. The storm eventually dies down and the temperature rises enough for you to find your way home.", null, null, 0),
+        new Story(32, "Your snow cave is warm enough however when you stacked the planks you blocked any incoming oxygen. Fun Fact: many people stranded in blizzards actually die of carbon monoxide poisoning.", null, null, 0.75),
+        new Story(150, "There's not a lot of loose branches and neither you nor your partner has a machete", 'Work with the snow around you', "Keep walking. You were close to home so you're bound to reach some sort of building. Hopefully people will be kind enough to let you in"),
+        new Story(155, "While you're walking the wind chill quickly makes your body temperature plummet. The risk of  hypothermia increases every minute you are exposed to the cold weather. You and your partner become irrationally hot and remove your clothes. You both freeze to death and even worse are found naked.", null, null, 0.75),
+        new Story(120, "Lucky for you there is pre-existing snow on the ground which you are able to shape and mold", "You and your partner start rolling/packing snow to create an igloo", 'Dig a snow cave into a nearby snow bank or drift'),
+        new Story(115, "Before you have enough packed snow to make one wall you and your partner have exerted enough energy to justify a break. Little do you know lying down on snow eliminates all your body heat. You take a nap but never wake up.", null, null, 0.75),
+        new Story(125, "When building your shelter there's conflicting opinions on how to ventilate it. Your partner believes the shelter should be packed as tight as possible with little to no opening while you suggest poking holes in the shelter. Do you...", "Follow your partner he's camped and hiked many more times than you", 'Poke holes in the shelter anyways'),
+        new Story(128, "Your shelter is nearly complete. While your partner is finishing his last shift digging it out you decide to prepare for a long storm ", "Search for clean snow to hydrate yourselves.", 'Search for branches and leaves to fortify your snow cave'),
+        new Story(127, "It seems like a good idea at first and you could really use something to drink. However, your body must melt the ice before it can be consumed. Consuming the snow exhausts you and your body temperature continue to drop until you pass out and eventually freeze.", null, null, 0.75),
+        new Story(130, "You are able to find some movable boulders and weathered wooden planks from a nearby dock.", "Once you and your partner are huddled inside the snow cave, stack the rocks in front of the opening to block any wind.", 'Once you and your partner are huddled inside tightly stack the planks in front of the opening to block any wind'),
+        new Story(129, "Your strategy is a success! The boulders block the wind while leaving enough room to let you and your partner breathe. The storm eventually dies down and the temperature rises enough for you to find your way home. You could've used some more air circulation though.", null, null, 0.15),
+        new Story(132, "Your snow cave is warm enough however when you stacked the planks you blocked any incoming oxygen. Fun Fact: many people stranded in blizzards actually die of carbon monoxide poisoning.", null, null, 0.75),
+        new Story(140, "Your shelter is nearly complete. While your partner is finishing his last shift digging it out you decide to prepare for a long storm ", "Search for clean snow to hydrate yourselves.", 'Search for branches and leaves to fortify your snow cave'),
+        new Story(136, "It seems like a good idea at first and you could really use something to drink. However, your body must melt the ice before it can be consumed. Consuming the snow exhausts you and your body temperature continue to drop until you pass out and eventually freeze.", null, null, 0.75),
+        new Story(142, "You are able to find some movable boulders and weathered wooden planks from a nearby dock.", "Once you and your partner are huddled inside the snow cave, stack the rocks in front of the opening to block any wind.", 'Once you and your partner are huddled inside tightly stack the planks in front of the opening to block any wind'),
+        new Story(141, "Your strategy is a success! The boulders block the wind while leaving enough room to let you and your partner breathe. The storm eventually dies down and the temperature rises enough for you to find your way home.", null, null, 0),
+        new Story(143, "Your snow cave is warm enough however when you stacked the planks you blocked any incoming oxygen. Fun Fact: many people stranded in blizzards actually die of carbon monoxide poisoning.", null, null, 0.75),
+    ]
+}
+
+const bear = {
+    title: 'Bear Fight',
+    category: 'wind',
+    background: 'snakeStory.jpg',
+    sound: 'bear.mp4',
     scenario: [
     ]
 }
 
-const scenarios = [tornado, plane, buried, earthquake, avalanche, frozenPlunge, snakeStory];
+const scenarios = [tornado, plane, buried, earthquake, avalanche, frozenPlunge, snakeStory, blizzard];
 
 const createBinaryObject = (story) => {
     let newTree = new BinarySearchTree();

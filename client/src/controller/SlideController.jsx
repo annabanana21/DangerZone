@@ -15,8 +15,17 @@ class SlideController extends React.Component {
         })
     }
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.story !== this.props.story) {
+            this.setState({
+                stage: this.props.story.tree.root,
+                finish: false
+            })
+        }
+    }
+
     nextSlide(slide) {
-        if (slide.right) {
+        if (slide.right && slide.left) {
             this.setState(
                 {
                     stage: slide

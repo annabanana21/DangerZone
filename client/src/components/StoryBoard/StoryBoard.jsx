@@ -2,6 +2,7 @@ import React from 'react';
 import ToggleButton from '../ToggleButton/ToggleButton';
 import './StoryBoard.scss';
 import clip from '../../assets/Icons/clipboard-clip.png';
+import check from '../../assets/Icons/checkmark.png';
 
 
 export default class StoryBoard extends React.Component {
@@ -26,11 +27,11 @@ export default class StoryBoard extends React.Component {
         let display = [];
         this.props.story.forEach((story, index) => {
             if (index === amount) {
-                display.push(<h3 className='story__stage' onClick={this.props.change}>{story.title}</h3>)
+                display.push(<div className='story__row'><div className='story__check'></div><h3 className='story__stage' onClick={this.props.change}>{story.title}</h3></div>)
             } else if (index > amount) {
-                display.push(<h3 className='story__stage--blur'>{story.title}</h3>)
+                display.push(<div className='story__row'><div className='story__check'></div><h3 className='story__stage--blur'>{story.title}</h3></div>)
             } else {
-                display.push(<h3 className='story__stage--cross'>{story.title}</h3>)
+                display.push(<div className='story__row'><div className='story__check'><img src={check} className='story__mark'/></div><h3 className='story__stage'>{story.title}</h3></div>)
             }
         })
         return display;
