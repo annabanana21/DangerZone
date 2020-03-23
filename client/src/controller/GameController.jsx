@@ -32,6 +32,20 @@ class GameController extends React.Component {
         this.getLocation = this.getLocation.bind(this);
     }
 
+    refresh() {
+        this.getLocation();
+        this.setState({
+            isHome: true,
+            isPlaying: false,
+            ended: false,
+            lastStory: false,
+            userStats: {
+                health: 100,
+                lost: false
+            }
+        })
+    }
+
 
     formatData(arr) {
         return arr.map(object => {
@@ -145,7 +159,7 @@ class GameController extends React.Component {
         } else if (this.state.isPlaying) {
             return <Display lastStory={this.state.lastStory} health={this.state.userStats} story={this.state.storyLeft[0]} change={() => this.change()} lose={(i,x) => this.lose(i,x)} nextStory={() => this.nextStory()}/>;
         } else if (this.state.ended) {
-            return <EndScreen lost={this.state.userStats.lost}/>
+            return <EndScreen stats={this.state.userStats} refresh={() => {this.refresh()}}/>
         }
         else {
             return <Loading startGame={() => this.startGame()}/>

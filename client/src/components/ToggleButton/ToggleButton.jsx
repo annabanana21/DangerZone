@@ -6,7 +6,7 @@ function ToggleButton(props) {
     return (
         <div>
             <img src={clip} className='button__task' onClick={props.display}/>
-            <div className='button__alert'>!</div>
+            <div className='button__alert getBig'>!</div>
         </div>
     )
 }

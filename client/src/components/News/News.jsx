@@ -17,7 +17,7 @@ class News extends React.Component {
                     <div className='news__box'>
                         <img src={this.props.weather[1]} className='news__icon'/>
                         <div className='news__font'>
-                            <h3 className='news__weather'>{this.props.weather[0]}</h3>
+                            <h3 className='news__weather flash'>{this.props.weather[0]}</h3>
                         </div>
                     </div>
                     <div className='news__wrap'>

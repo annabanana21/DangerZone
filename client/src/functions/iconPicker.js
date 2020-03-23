@@ -12,7 +12,7 @@ const iconPicker = (weatherObj) => {
         return ['DEEP FREEZE', cold, 'freeze', Math.round(weatherObj.main.temp - 273.15 - 40)];
     } 
     else {
-        return ['EARTHQUAKE', earth, 'earth', Math.round(weatherObj.main.temp - 273.15)];
+        return ['EARTHQUAKE WARNING', earth, 'earth', Math.round(weatherObj.main.temp - 273.15)];
     }
 }
 

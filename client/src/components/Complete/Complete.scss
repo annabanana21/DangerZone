@@ -1,30 +1,34 @@
 .complete {
     width: 600px;
     height: 400px;
-    background-color: white;
+    background: url('../../assets/Paper-3.jpg');
+    background-position: center;
+    background-size: cover;
     display: flex;
     z-index: 10;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     border-radius: 5px;
+    padding: 3rem 0 2rem 0;
 
     &__wrap {
         width: 100%;
         display: flex;
         justify-content: space-between;
-        padding: 0 1rem;
+        padding: 0 1.5rem;
         align-self: flex-end;
+        margin-top: 1rem;
     }
 
     &__button {
-        background-color: blueviolet;
+        background-color: #424242;
         color: white;
         display: flex;
         justify-content: center;
         align-items: center;
         height: 3rem;
-        width: 5rem;
+        width: 7rem;
     }
 
     &__prompt {

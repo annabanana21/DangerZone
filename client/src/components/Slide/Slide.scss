@@ -11,11 +11,13 @@
     z-index: 10;
 
     &__q {
-        width: 100%;
+        width: 80%;
         height: fit-content;
-        min-height: 200px;
-        background-color: #3b3734;
-        color: white;
+        min-height: 150px;
+        background: url('../../assets/Paper-3.jpg');
+        background-position: center;
+        background-size: cover;
+        color: #424242;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -35,7 +37,7 @@
     &__box {
         width: 45%;
         height: fit-content;
-        background-color: #616141;
+        border: 2px solid #424242;
         color: white;
         display: flex;
         align-items: center;
