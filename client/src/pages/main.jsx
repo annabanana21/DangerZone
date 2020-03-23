@@ -1,6 +1,4 @@
 import React from 'react';
-import Slide from '../components/Slide/Slide';
-import axios from 'axios';
 import './main.scss';
 import News from '../components/News/News';
 import StoryBoard from '../components/StoryBoard/StoryBoard';
@@ -11,7 +9,7 @@ class Main extends React.Component {
     render() {
         return (
             <main className='page'>
-                <News weather={this.props.weather} population={this.props.population}/>
+                <News popSetter={this.props.popSetter} weather={this.props.weather} population={this.props.population}/>
                 <StoryBoard story={this.props.story} storyLeft={this.props.storyLeft} change={this.props.change}/>
                 <div className='page__health'><Health health={this.props.health.health}/></div>
             </main>

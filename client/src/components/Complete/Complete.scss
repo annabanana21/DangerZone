@@ -1,3 +1,6 @@
+@import '../../styles/fonts';
+@import '../../styles/colors';
+
 .complete {
     width: 600px;
     height: 400px;
@@ -22,7 +25,7 @@
     }
 
     &__button {
-        background-color: #424242;
+        background-color: $text;
         color: white;
         display: flex;
         justify-content: center;
@@ -34,5 +37,6 @@
     &__prompt {
         padding: 0 1rem;
         text-align: center;
+        font-size: 1.5rem;
     }
 }

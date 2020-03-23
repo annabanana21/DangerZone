@@ -25,11 +25,9 @@ class GameController extends React.Component {
                 lost: false
             },
             weather: [],
-            population: [1000000, 250000]
+            population: Math.floor(Math.random() * 2000000) + 250000
         }
         this.apiKey = '4774ad80334f760f9b45af484c39e9fe';
-        this.getCoordinates = this.getCoordinates.bind(this);
-        this.getLocation = this.getLocation.bind(this);
     }
 
     refresh() {
@@ -44,6 +42,14 @@ class GameController extends React.Component {
                 lost: false
             }
         })
+    }
+
+    popSetter(newPopulation) {
+        this.setState(
+            {
+                population: newPopulation
+            }
+        )
     }
 
 
@@ -62,7 +68,7 @@ class GameController extends React.Component {
         })
     }
 
-    getCoordinates(position) {
+    getCoordinates = (position) => {
         const long = position.coords.longitude;
         const lat = position.coords.latitude;
         axios.get('http://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+long+'&appid='+this.apiKey).then(results => {
@@ -73,7 +79,7 @@ class GameController extends React.Component {
         })
     }
 
-    getLocation() {
+    getLocation = () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(this.getCoordinates);
         }
@@ -84,7 +90,7 @@ class GameController extends React.Component {
             let storyLine = this.formatData(res.data)
             this.setState({
                 story: storyLine,
-                storyLeft: [... storyLine]
+                storyLeft: [...storyLine]
             })
         })
     }
@@ -154,7 +160,7 @@ class GameController extends React.Component {
     render() {
         if (this.state.isHome) {
             return (
-                <Main population={this.state.population} health={this.state.userStats} weather={this.state.weather} story={this.state.story} storyLeft={this.state.storyLeft} change={() => this.change()}/>
+                <Main popSetter={(x) => this.popSetter(x)} population={this.state.population} health={this.state.userStats} weather={this.state.weather} story={this.state.story} storyLeft={this.state.storyLeft} change={() => this.change()}/>
             )
         } else if (this.state.isPlaying) {
             return <Display lastStory={this.state.lastStory} health={this.state.userStats} story={this.state.storyLeft[0]} change={() => this.change()} lose={(i,x) => this.lose(i,x)} nextStory={() => this.nextStory()}/>;

@@ -24,7 +24,7 @@
 
     &__title {
         font-size: 5rem;
-        color: #424242;
+        color: $text;
         font-family: Arial, Helvetica, sans-serif;
         font-weight: bold;
         margin: 1rem 0;
@@ -37,8 +37,8 @@
     }
 
     &__button {
-        border: 2px solid #424242;
-        color: #424242;
+        border: 2px solid $text;
+        color: $text;
         font-size: 1rem;
         display: flex;
         justify-content: center;

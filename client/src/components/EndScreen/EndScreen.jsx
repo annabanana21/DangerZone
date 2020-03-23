@@ -14,16 +14,20 @@ class EndScreen extends React.Component {
     }
 
     componentDidMount() {
+        //If the user hasn't lost start counter to show user's end of game health
         if (!this.props.stats.lost) {
-            this.state.interval = setInterval(() => {
-                this.setState({
-                    health: this.state.health + 1
-                })
-            }, 20)
+            this.setState({
+                interval: setInterval(() => {
+                    this.setState({
+                        health: this.state.health + 1
+                    })
+                }, 20)
+            })
         }
     }
 
     componentDidUpdate() {
+        //Clear the health interval when the user's total health is displayed
         if (this.props.stats.health === this.state.health) {
             clearInterval(this.state.interval)
         }
@@ -35,7 +39,7 @@ class EndScreen extends React.Component {
                 {
                     this.props.stats.lost && (
                         <>
-                            <img src={lose} className='end__image'/>
+                            <img src={lose} className='end__image' alt='Skull with missing front teeth'/>
                             <h2 className='end__title'>YOU LOSE</h2>
                         </>
                         )
@@ -43,7 +47,7 @@ class EndScreen extends React.Component {
                 {
                     !this.props.stats.lost && (
                         <>
-                        <img src={win} className='end__image' />
+                        <img src={win} className='end__image' alt='Skull with old school pilot hat on'/>
                         <h2 className='end__title'>YOU WIN</h2>
                         <h3 className='end__percent'>{this.state.health}% HEALTH REMAINING</h3>
                         </>
