@@ -1,8 +1,7 @@
 import React from 'react';
 import './News.scss';
 import iconPicker from '../../functions/iconPicker';
-import epidemic from '../../assets/Icons/Epidemic.svg';
-import danger from '../../assets/Icons/Danger.svg';
+import skull from '../../assets/Icons/Danger.svg';
 
 
 class News extends React.Component {
@@ -23,16 +22,11 @@ class News extends React.Component {
                     </div>
                     <div className='news__wrap'>
                         <div className='news__box--small'>
-                            <img src={epidemic} className='news__icon--small'/>
-                            <h4>{this.props.population[1]}</h4>
+                            <img src={skull} className='news__icon--small'/>
+                            <h4 className='news__num'>{this.props.population[1]}</h4>
                         </div>
-                        <div className='news__box--small'></div>
-                    </div>
-                    <div className='news__wrap'>
-                        <div className='news__box--small'></div>
                         <div className='news__box--small'>
-                            <img src={danger} className='news__icon--small'/>
-                            <h4>{this.props.population[0]}</h4>
+                            <h4 className='news__temp'>{this.props.weather[3]}°C</h4>
                         </div>
                     </div>
                 </div>

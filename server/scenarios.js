@@ -15,70 +15,97 @@ class Story {
 const snakeStory = {
     intro: "You’re on your way to gather supplies and medicine. To conserve the gas left in your car you decide to walk the 2km to the nearest pharmacy. You can shave off a km of the walk by cutting through a ravine, and also avoid and rogue criminals. Halfway there you trip over what you first think is a tree stump but then you feel a sharp pain in your right ankle...",
     title: 'Snake Bite',
-    background: 'snakeStory.jpg',
+    background: 'snake.gif',
     sound: 'Snake.wav',
     category: 'earth',
     scenario: [
     new Story(8, 'You get bit by a snake', 'run back to base', 'sit down'),
-    new Story(10, 'Your leg is aching and begins bleeding', 'Remove any tight clothes or jewlery', 'create a tournequette'),
+    new Story(20, 'Your leg is aching and begins bleeding', 'Remove any tight clothes or jewlery', 'create a tournequette'),
     new Story(3, 'Your leg goes numb after 5 minutes of running and you fall to the ground', 'Begin sucking poison out', 'Rinse with water and tie shirt'),
-    new Story(1, 'You begin foaming at the mouth and fall into a coma', 'Game Over', 'try again'),
+    new Story(1, 'You begin foaming at the mouth and fall into a coma', null, null, 0.40),
     new Story(6, 'The pain subsides and you regain feeling', 'Wait for help', 'keep heading home'),
-    new Story(4, 'You sit in the ravene for hours until a pack of raccoons start harrasing you', 'die of rabies', 'Game over'),
-    new Story(7, 'You drag yourself home and luckily posion control picks up', 'you survived', 'yay'),
-    new Story(14, 'Bite begins swelling 2x the size of your other foot', 'you pass out', 'venom throws through you dead'),
-    new Story(9, 'Your leg begins tingling and you fear the venom may be spreading', 'elevate leg on tree stump', 'position legs downwards')
+    new Story(4, "You sit in the ravene for hours until a pack of raccoons start harrasing you. You're unsure whether you die from the poison or rabies.", null, null, 0.50),
+    new Story(7, 'You drag yourself home and luckily posion control picks up before you pass out. You should stay as still as possible after being bitten and call for help.', null, null, 0.15),
+    new Story(25, 'Bite begins swelling 2x the size of your other foot', null, null, 0.4),
+    new Story(15, 'Your leg begins tingling and you fear the venom may be spreading', 'elevate leg on tree stump', 'position legs downwards'),
+    new Story(12, "The pain is getting unbearable. You have medicine in your pocket but which do you take?", "Tylonel", "Advil"),
+    new Story(18, "The pain is getting unbearable. You have medicine in your pocket but which do you take?", "Tylonel", "Advil"),
+    new Story(10, "The pain subsides enough for you to call the ambulance. Your recovery is much tougher considering you elevated your leg encouraging the venom to spread.", null, null, 0.15),
+    new Story(13, "The pain subsides enough for you to call the ambulance. Your recovery is much tougher considering you elevated your leg and took a blood thinner causing the venom to rapidly spread.", null, null, 0.3),
+    new Story(17, "The pain subsides enough for you to call the ambulance. Your recovery is speedy.", null, null, 0),
+    new Story(19, "The pain subsides enough for you to call the ambulance. Your recovery is much tougher considering you took a blood thinner encouraging the venom to spread.", null, null, 0.3),
+
 ]}
 
 const frozenPlunge = {
     intro: 'Your mission to save your friend is a success. However, on the drive home you lose control of the car and it swerves off the road...',
     title: 'Ice Plunge',
-    background: 'Frozen-Lake.jpg',
+    background: 'water.gif',
     sound: 'Water.wav',
     category: 'freeze',
     scenario: [
-        new Story(50, "Your car has gained incredible momentum and eventually makes impact with what sounds like glass. You hear cracking and suddenly your car plunges into water...", "Luckily you know your exact coordinates so call the police and wait for help", "Roll down your window and escape"),
-        new Story(32, "Given it's the end of the world the police are busy and you find yourself in a queue of hundreds", "Stay calm and wait for the car to fully submerge then escape", "Search the car for something to break the window with"),
-        new Story(20, "The car is taking it's sweet time to sink and the water begins rushing in", "Stay calm, try meditating.", "Focus on keeping yourself out of the water as much as possible"),
-        new Story(16, "Mind over matter can only take you so far. You are neck deep in water and eventually become disoriented due to the cold.", null, null, 0.50),
-        new Story(24, "The car is almost completely full and you're readying yourself to open the door", "Strip to your underwear and swim to the surface as fast as you can", "Remove your winter-gear and swim to the surface"),
-        new Story(22, "You make it to the break in the ice", "Put your arms on the surface of the ice and thrash your legs", "put your arms out onto the ice and pull yourself up"),
-        new Story(21, "You kick your legs bringing your body to a horizontal position as if you are swimming. You've escaped but you've left all your clothes and your skin is exposed", null, null, 0.40),
-        new Story(23, "You eventually escape but you've over exerted yourself and now your legs are numb...hypoerthermia is inevtiable since you abandoned your clothes but you'll survive.", null, null, 0.40),
-        new Story(30, "You make it to the break in the ice", "Put your arms on the surface of the ice and thrash your legs", "put your arms out onto the ice and pull yourself up"),
-        new Story(29, "You kick your legs bringing your body to a horizontal position as if you are swimming. You've escaped", null, null, 0),
-        new Story(31, "You eventually escape but you've over exerted yourself and now your legs are numb...hypoerthermia is inevtiable but you'll survive", null, null, 0.35),
+        new Story(55, "Your car has gained incredible momentum and eventually makes impact with what sounds like glass. You hear cracking and suddenly your car plunges into water...", "Luckily you know your exact coordinates so call the police and wait for help", "Roll down your window and escape"),
         new Story(70, "The window isn't rolling down so it must've disabled when the car hit the water", "Stay calm and wait for the car to fully submerge then escape", "Search the car for something to break the window with"),
         new Story(100, "No luck so far the only thing you have in your car is gum and a pair of sunglasses", "Keep searching there must be something in the trunk...", "Stay calm and wait for pressure in car to equalize then you can make your escape"),
         new Story(85, "You're a genius and remove the headrest from the passenger seat and use the metal portion to break the window.. You can escape the car but are shocked by the freezing water.", "Strip to your underwear and swim to the surface as fast as you can", "Remove your winter-gear and swim to the surface"),
-        new Story(83, "You make it to the break in the ice", "Put your arms on the surface of the ice and thrash your legs", "put your arms out onto the ice and pull yourself up"),
-        new Story(82, "You kick your legs bringing your body to a horizontal position as if you are swimming. You've escaped but you're naked and hypothermia is inevitable", null, null, 0.40),
-        new Story(84, "You eventually escape but you've over exerted yourself and now your legs are numb...hypoerthermia is inevtiable but you'll survive", null, null, 0.35),
-        new Story(160, "The car is taking it's sweet time to sink and the water begins rushing in", "Stay calm, try meditating", "Focus on keeping yourself out of the water as much as possible"),
-        new Story(120, "Mind over matter can only take you so far. You are neck deep in water and eventually become disoriented due to the cold.", null, null, 0.50),
-        new Story(180, "The car is almost completely full and you're readying yourself to open the door", "Strip to your underwear and swim to the surface as fast as you can", "Remove your winter-gear and swim to the surface"),
-        new Story(170, "You make it to the break in the ice", "Put your arms on the surface of the ice and thrash your legs", "put your arms out onto the ice and pull yourself up"),
-        new Story(190, "You make it to the break in the ice", "Put your arms on the surface of the ice and thrash your legs", "put your arms out onto the ice and pull yourself up"),
-        new Story(168, "You kick your legs bringing your body to a horizontal position as if you are swimming. You've escaped but you're naked and hypothermia is inevitable", null, null, 0.40),
-        new Story(172, "You eventually escape but you've over exerted yourself and now your legs are numb. Could be becuase you decided to take your clothes off. Hypoerthermia is inevtiable but you'll survive", null, null, 0.50),
-        new Story(185, "You kick your legs bringing your body to a horizontal position as if you are swimming. You've escaped", null, null, 0),
-        new Story(192, "You eventually escape but you've over exerted yourself and now your legs are numb...hypoerthermia is inevtiable but you'll survive", null, null, 0.35),
+        new Story(80, "You make it to the break in the ice", "Put your arms on the surface of the ice and thrash your legs", "put your arms out onto the ice and pull yourself up"),
+        new Story(75, "You kick your legs bringing your body to a horizontal position as if you are swimming. You've escaped but you're naked and hypothermia is inevitable", null, null, 0.20),
+        new Story(83, "You eventually escape but you've over exerted yourself and now your legs are numb...hypoerthermia is inevtiable but you'll survive", null, null, 0.35),
+        new Story(90, "You make it to the break in the ice", 'Put your arms on the surface of the ice and thrash your legs', 'put your arms out onto the ice and pull yourself up'),
+        new Story(87, "You kick your legs bringing your body to a horizontal position as if you are swimming. You've escaped", null, null, 0),
+        new Story(93, "You eventually escape but you've over exerted yourself and now your legs are numb...hypothermia is inevitable but you'll survive.", null, null, 0.2),
+        new Story(120, "The car is taking it's sweet time to sink and the water begins rushing in", "Stay calm, try meditating", "Focus on keeping yourself out of the water as much as possible"),
+        new Story(110, "Mind over matter can only take you so far. You are neck deep in water and eventually become disoriented due to the cold.", null, null, 0.50),
+        new Story(135, "The car is almost completely full and you're readying yourself to open the door", "Strip to your underwear and swim to the surface as fast as you can", "Remove your winter-gear and swim to the surface"),
+        new Story(130, "You make it to the break in the ice", "Put your arms on the surface of the ice and thrash your legs", "put your arms out onto the ice and pull yourself up"),
+        new Story(140, "You make it to the break in the ice", "Put your arms on the surface of the ice and thrash your legs", "put your arms out onto the ice and pull yourself up"),
+        new Story(125, "You kick your legs bringing your body to a horizontal position as if you are swimming. You've escaped but you're naked and hypothermia is inevitable", null, null, 0.20),
+        new Story(134, "You eventually escape but you've over exerted yourself and now your legs are numb. Could be becuase you decided to take your clothes off. Hypoerthermia is inevtiable but you'll survive", null, null, 0.35),
+        new Story(138, "You kick your legs bringing your body to a horizontal position as if you are swimming. You've escaped", null, null, 0),
+        new Story(145, "You eventually escape but you've over exerted yourself and now your legs are numb...hypoerthermia is inevtiable but you'll survive", null, null, 0.20),
         new Story(60, "The car is taking it's sweet time to sink and the water begins rushing in", "Stay calm, try meditating.", "Focus on keeping yourself out of the water as much as possible"),
-        new Story(55, "Mind over matter can only take you so far. You are neck deep in water and eventually become disoriented due to the cold.", null, null, 0.50),
+        new Story(56, "Mind over matter can only take you so far. You are neck deep in water and eventually become disoriented due to the cold.", null, null, 0.50),
         new Story(65, "The car is almost completely full and you're readying yourself to open the door", "Strip to your underwear and swim to the surface as fast as you can", "Remove your winter-gear and swim to the surface"),
-        new Story(62, "You make it to the break in the ice", "Put your arms on the surface of the ice and thrash your legs", "put your arms out onto the ice and pull yourself up"),
+        new Story(63, "You make it to the break in the ice", "Put your arms on the surface of the ice and thrash your legs", "put your arms out onto the ice and pull yourself up"),
         new Story(67, "You make it to the break in the ice", "Put your arms on the surface of the ice and thrash your legs", "put your arms out onto the ice and pull yourself up"),
-        new Story(61, "You kick your legs bringing your body to a horizontal position as if you are swimming. You've escaped but you're naked and hypothermia is inevitable", null, null, 0.40),
-        new Story(63, "You eventually escape but you've over exerted yourself and now your legs are numb. Could be becuase you decided to take your clothes off. Hypoerthermia is inevtiable but you'll survive", null, null, 0.50),
+        new Story(62, "You kick your legs bringing your body to a horizontal position as if you are swimming. You've escaped but you're naked and hypothermia is inevitable", null, null, 0.20),
+        new Story(64, "You eventually escape but you've over exerted yourself and now your legs are numb. Could be becuase you decided to take your clothes off. Hypoerthermia is inevtiable but you'll survive", null, null, 0.35),
         new Story(66, "You kick your legs bringing your body to a horizontal position as if you are swimming. You've escaped", null, null, 0),
-        new Story(68, "You eventually escape but you've over exerted yourself and now your legs are numb...hypoerthermia is inevtiable but you'll survive", null, null, 0.35),
+        new Story(68, "You eventually escape but you've over exerted yourself and now your legs are numb...hypoerthermia is inevtiable but you'll survive", null, null, 0.20),
+        new Story(15, "Given it's the end of the world the police are busy and you find yourself in a queue of hundreds", 'Stay calm and wait for the car to fully submerge then escape', 'Search the car for something to break the window with'),
+        new Story(30, "No luck so far the only thing you have in your car is gum and a pair of sunglasses", "Keep searching there must be something in the trunk...", "Stay calm and wait for pressure in car to equalize then you can make your escape"),
+        new Story(25, "You're a genius and remove the headrest from the passenger seat and use the metal portion to break the window.. You can escape the car but are shocked by the freezing water.", "Strip to your underwear and swim to the surface as fast as you can", "Remove your winter-gear and swim to the surface"),
+        new Story(23, "You make it to the break in the ice", "Put your arms on the surface of the ice and thrash your legs", "put your arms out onto the ice and pull yourself up"),
+        new Story(22, "You kick your legs bringing your body to a horizontal position as if you are swimming. You've escaped but you're naked and hypothermia is inevitable", null, null, 0.20),
+        new Story(24, "You eventually escape but you've over exerted yourself and now your legs are numb...hypoerthermia is inevtiable but you'll survive", null, null, 0.35),
+        new Story(27, "You make it to the break in the ice", 'Put your arms on the surface of the ice and thrash your legs', 'put your arms out onto the ice and pull yourself up'),
+        new Story(26, "You kick your legs bringing your body to a horizontal position as if you are swimming. You've escaped", null, null, 0),
+        new Story(28, "You eventually escape but you've over exerted yourself and now your legs are numb...hypothermia is inevitable but you'll survive.", null, null, 0.2),
+        new Story(33, "The car is taking it's sweet time to sink and the water begins rushing in", "Stay calm, try meditating", "Focus on keeping yourself out of the water as much as possible"),
+        new Story(32, "Mind over matter can only take you so far. You are neck deep in water and eventually become disoriented due to the cold.", null, null, 0.50),
+        new Story(38, "The car is almost completely full and you're readying yourself to open the door", "Strip to your underwear and swim to the surface as fast as you can", "Remove your winter-gear and swim to the surface"),
+        new Story(35, "You make it to the break in the ice", "Put your arms on the surface of the ice and thrash your legs", "put your arms out onto the ice and pull yourself up"),
+        new Story(42, "You make it to the break in the ice", "Put your arms on the surface of the ice and thrash your legs", "put your arms out onto the ice and pull yourself up"),
+        new Story(34, "You kick your legs bringing your body to a horizontal position as if you are swimming. You've escaped but you're naked and hypothermia is inevitable", null, null, 0.20),
+        new Story(36, "You eventually escape but you've over exerted yourself and now your legs are numb. Could be becuase you decided to take your clothes off. Hypoerthermia is inevtiable but you'll survive", null, null, 0.35),
+        new Story(41, "You kick your legs bringing your body to a horizontal position as if you are swimming. You've escaped", null, null, 0),
+        new Story(45, "You eventually escape but you've over exerted yourself and now your legs are numb...hypoerthermia is inevtiable but you'll survive", null, null, 0.20),
+        new Story(5, "The car is taking it's sweet time to sink and the water begins rushing in", "Stay calm, try meditating.", "Focus on keeping yourself out of the water as much as possible"),
+        new Story(1, "Mind over matter can only take you so far. You are neck deep in water and eventually become disoriented due to the cold.", null, null, 0.50),
+        new Story(10, "The car is almost completely full and you're readying yourself to open the door", "Strip to your underwear and swim to the surface as fast as you can", "Remove your winter-gear and swim to the surface"),
+        new Story(8, "You make it to the break in the ice", "Put your arms on the surface of the ice and thrash your legs", "put your arms out onto the ice and pull yourself up"),
+        new Story(13, "You make it to the break in the ice", "Put your arms on the surface of the ice and thrash your legs", "put your arms out onto the ice and pull yourself up"),
+        new Story(7, "You kick your legs bringing your body to a horizontal position as if you are swimming. You've escaped but you're naked and hypothermia is inevitable", null, null, 0.20),
+        new Story(9, "You eventually escape but you've over exerted yourself and now your legs are numb. Could be becuase you decided to take your clothes off. Hypoerthermia is inevtiable but you'll survive", null, null, 0.35),
+        new Story(12, "You kick your legs bringing your body to a horizontal position as if you are swimming. You've escaped", null, null, 0),
+        new Story(14, "You eventually escape but you've over exerted yourself and now your legs are numb...hypoerthermia is inevtiable but you'll survive", null, null, 0.20),
     ]
 }
 
 const avalanche = {
     intro: 'You’re on your way to gather supplies and medicine. To conserve the gas left in your car you decide to walk to the nearest pharmacy. It’s a quick walk but it’s up a steep mountain (at least it feels that way). Halfway up you notice vibration and hear a rumbling…',
     title: 'Avalanche',
-    background: 'Avalanche.mp4',
+    background: 'Avalanche.gif',
     sound: 'Avalanche.wav',
     category: 'freeze',
     scenario: [
@@ -109,8 +136,10 @@ const avalanche = {
 }
 
 const earthquake = {
+    intro: 'Earthquake intro',
     title: 'Earthquake',
     category: 'earth',
+    background: 'earthquake.gif',
     sound: 'Earthquake.wav',
     scenario: [
         new Story(50, 'The ground begins to furiously shake...', 'run for cover', 'run out into the open road'),
@@ -125,7 +154,9 @@ const earthquake = {
     ]
 }
 const buried = {
+    intro: "You don't remember what happened",
     title: 'Buried Alive',
+    sound: 'buried.wav',
     category: 'earth',
     background: 'dark.jpg',
     scenario: [
@@ -142,9 +173,10 @@ const buried = {
 }
 
 const plane = {
+    intro: "Being too dangerous to travel by land",
     title: 'Crash Landing',
     category: 'wind',
-    background: 'sky.mp4',
+    background: 'sky.gif',
     sound: 'plane.wav',
     scenario: [
         new Story(100, "Once seated you notice there are a bunch of buttons a levers but you have no idea what they do. There's a steering wheel that seems easy enough...", 'Take control of the wheel', 'Look for a guide/manual'),
@@ -190,9 +222,10 @@ const plane = {
 }
 
 const tornado = {
+    intro: "Your trip is a success",
     title: "Tornado", 
     category: 'wind',
-    background: 'Tornado.mp4',
+    background: 'Tornado.gif',
     sound: 'Wind.wav',
     scenario: [
         new Story(50, "Before you have time to drive out of it's way the tornado is within 100 meters of you", 'Abandon your car', "Stay in your car hoping it'll miss you"),
@@ -210,9 +243,10 @@ const tornado = {
 }
 
 const blizzard = {
+    intro: "You've survived up until now but here's the real challenge",
     title: "Blizzard",
     category: 'freeze',
-    background: 'snow.mp4',
+    background: 'snow.gif',
     sound: 'Blizzard.wav',
     scenario: [
         new Story(80, "The snow begins falling fast and temperatures are hitting all time lows. Do you...", 'Start looking for wood to build a fire', 'Look for materials to build a shelter'),
@@ -268,13 +302,52 @@ const blizzard = {
 const bear = {
     title: 'Bear Fight',
     category: 'wind',
-    background: 'snakeStory.jpg',
-    sound: 'bear.mp4',
+    background: 'bear.gif',
+    sound: 'Bear.wav',
     scenario: [
+        new Story(50, "Frozen behind you is a tall light blonde bear. It has locked eyes with you.", 'Back away slowly keeping eye contact. You make no sudden movements', "Keep eye contact lifting your arms above your head to make yourself as tall as possible"),
+        new Story(70, "You expected the bear to be intimidated but it appears to be more confused", 'Match his bluff and walk towards him', 'Yell as loud as you can'),
+        new Story(60, "He doesn't back away but instead gets on his hind legs and lets out a roar that shakes the trees around you", "run in the opposite direction", 'square up with the bear'),
+        new Story(57, "Running probably wasn't the greatest strategy because now the bear is running after you", "A tree nearby looks easy enough to climb", "Play dead, hoping the bear loses interest"),
+        new Story(56, "Fun Fact: black bears aren't always black in appearance and can exhibit a variety of colors even light blonde. Another fun fact: black bears are excellent tree climbers. The bear climbs after you and you are bear food.", null, null, 0.5),
+        new Story(58, "Fun Fact: black bears aren't always black in appearance and can exhibit a variety of colors even light blonde. While the playing dead tactic may work in the case of a mother protecting her cubs this bear is predatory and hungry. You are bear food.", null, null, 0.5),
+        new Story(65, "Prepare yourself, you're about to fight a bear", "Arm yourself with the closest rock or branch", "Your fists are all you need"),
+        new Story(62, "Your face to face with the bear how do you fight", "Focus on landing blows to the bears face and snout", "Land blows sporadically to both the head and body"),
+        new Story(61, "After a few hits to the face the bear flees. Fun Fact: black bears aren't always black in appearance and can exhibit a variety of colors even light blonde. Keep in mind a grizzly (or brown bear) has a noticeable back hump while a black bear does not.  Always stand your ground against a black bear.", null, null, 0),
+        new Story(63, "You might be faster but the bear is definitely stronger. A blow to his side only makes him angrier and he is able to have you on the ground in one swipe. Fun Fact: black bears aren't always black in appearance and can exhibit a variety of colors even light blonde. Always aim for the face when fighting a black bear. You are now bear food.", null, null, 0.4),
+        new Story(67, "Your face to face with the bear how do you fight", "Focus on landing blows to the bears face and snout", "Land blows sporadically to both the head and body"),
+        new Story(66, "After a few hits to the face the bear flees. A weapon would've been useful because you were attacking long enough to sustain injuries. Fun Fact: black bears aren't always black in appearance and can exhibit a variety of colors even light blonde. Keep in mind a grizzly (or brown bear) has a noticeable back hump while a black bear does not.  Always stand your ground against a black bear.", null, null, 0.15),
+        new Story(68, "You might be faster but the bear is definitely stronger. A blow to his side only makes him angrier and he is able to have you on the ground in one swipe. Fun Fact: black bears aren't always black in appearance and can exhibit a variety of colors even light blonde. Always aim for the face when fighting a black bear. You are now bear food.", null, null, 0.4),
+        new Story(80, "He doesn't back away but instead gets on his hind legs and lets out a roar that shakes the trees around you", "run in the opposite direction", 'square up with the bear'),
+        new Story(77, "Running probably wasn't the greatest strategy because now the bear is running after you", "A tree nearby looks easy enough to climb", "Play dead, hoping the bear loses interest"),
+        new Story(76, "Fun Fact: black bears aren't always black in appearance and can exhibit a variety of colors even light blonde. Another fun fact: black bears are excellent tree climbers. The bear climbs after you and you are bear food.", null, null, 0.5),
+        new Story(78, "Fun Fact: black bears aren't always black in appearance and can exhibit a variety of colors even light blonde. While the playing dead tactic may work in the case of a mother protecting her cubs this bear is predatory and hungry. You are bear food.", null, null, 0.5),
+        new Story(90, "Prepare yourself, you're about to fight a bear", "Arm yourself with the closest rock or branch", "Your fists are all you need"),
+        new Story(85, "Your face to face with the bear how do you fight", "Focus on landing blows to the bears face and snout", "Land blows sporadically to both the head and body"),
+        new Story(84, "After a few hits to the face the bear flees. Fun Fact: black bears aren't always black in appearance and can exhibit a variety of colors even light blonde. Keep in mind a grizzly (or brown bear) has a noticeable back hump while a black bear does not.  Always stand your ground against a black bear.", null, null, 0),
+        new Story(87, "You might be faster but the bear is definitely stronger. A blow to his side only makes him angrier and he is able to have you on the ground in one swipe. Fun Fact: black bears aren't always black in appearance and can exhibit a variety of colors even light blonde. Always aim for the face when fighting a black bear. You are now bear food.", null, null, 0.4),
+        new Story(95, "Your face to face with the bear how do you fight", "Focus on landing blows to the bears face and snout", "Land blows sporadically to both the head and body"),
+        new Story(92, "After a few hits to the face the bear flees. A weapon would've been useful because you were attacking long enough to sustain injuries. Fun Fact: black bears aren't always black in appearance and can exhibit a variety of colors even light blonde. Keep in mind a grizzly (or brown bear) has a noticeable back hump while a black bear does not.  Always stand your ground against a black bear.", null, null, 0.15),
+        new Story(96, "You might be faster but the bear is definitely stronger. A blow to his side only makes him angrier and he is able to have you on the ground in one swipe. Fun Fact: black bears aren't always black in appearance and can exhibit a variety of colors even light blonde. Always aim for the face when fighting a black bear. You are now bear food.", null, null, 0.4),
+        new Story(10, "The bear looks at you curiously and slowly walks in your direction", "Hope he remains un-bothered and sprint in the other direction", "Stand your ground. Elevate yourself on a nearby stump and act as big as possible"),
+        new Story(5, "Running probably wasn't the greatest strategy because now the bear is running after you", "A tree nearby looks easy enough to climb.", "Play dead, hoping the bear loses interest"),
+        new Story(2, "Fun Fact: black bears aren't always black in appearance and can exhibit a variety of colors even light blonde. Another fun fact: black bears are excellent tree climbers. The bear climbs after you and you are bear food.", null, null, 0.5),
+        new Story(7, "Fun Fact: black bears aren't always black in appearance and can exhibit a variety of colors even light blonde. While the playing dead tactic may work in the case of a mother protecting her cubs this bear is predatory and hungry. You are bear food.", null, null, 0.5),
+        new Story(20, "He doesn't back away but instead gets on his hind legs and lets out a roar that shakes the trees around you", "run in the opposite direction", 'square up with the bear'),
+        new Story(15, "Running probably wasn't the greatest strategy because now the bear is running after you", "A tree nearby looks easy enough to climb", "Play dead, hoping the bear loses interest"),
+        new Story(12, "Fun Fact: black bears aren't always black in appearance and can exhibit a variety of colors even light blonde. Another fun fact: black bears are excellent tree climbers. The bear climbs after you and you are bear food.", null, null, 0.5),
+        new Story(14, "Fun Fact: black bears aren't always black in appearance and can exhibit a variety of colors even light blonde. While the playing dead tactic may work in the case of a mother protecting her cubs this bear is predatory and hungry. You are bear food.", null, null, 0.5),
+        new Story(30, "Prepare yourself, you're about to fight a bear", "Arm yourself with the closest rock or branch", "Your fists are all you need"),
+        new Story(25, "Your face to face with the bear how do you fight", "Focus on landing blows to the bears face and snout", "Land blows sporadically to both the head and body"),
+        new Story(24, "After a few hits to the face the bear flees. Fun Fact: black bears aren't always black in appearance and can exhibit a variety of colors even light blonde. Keep in mind a grizzly (or brown bear) has a noticeable back hump while a black bear does not.  Always stand your ground against a black bear.", null, null, 0),
+        new Story(26, "You might be faster but the bear is definitely stronger. A blow to his side only makes him angrier and he is able to have you on the ground in one swipe. Fun Fact: black bears aren't always black in appearance and can exhibit a variety of colors even light blonde. Always aim for the face when fighting a black bear. You are now bear food.", null, null, 0.4),
+        new Story(35, "Your face to face with the bear how do you fight", "Focus on landing blows to the bears face and snout", "Land blows sporadically to both the head and body"),
+        new Story(32, "After a few hits to the face the bear flees. A weapon would've been useful because you were attacking long enough to sustain injuries. Fun Fact: black bears aren't always black in appearance and can exhibit a variety of colors even light blonde. Keep in mind a grizzly (or brown bear) has a noticeable back hump while a black bear does not.  Always stand your ground against a black bear.", null, null, 0.15),
+        new Story(37, "You might be faster but the bear is definitely stronger. A blow to his side only makes him angrier and he is able to have you on the ground in one swipe. Fun Fact: black bears aren't always black in appearance and can exhibit a variety of colors even light blonde. Always aim for the face when fighting a black bear. You are now bear food.", null, null, 0.4),
     ]
 }
 
-const scenarios = [tornado, plane, buried, earthquake, avalanche, frozenPlunge, snakeStory, blizzard];
+const scenarios = [tornado, plane, buried, earthquake, avalanche, frozenPlunge, snakeStory, blizzard, bear];
 
 const createBinaryObject = (story) => {
     let newTree = new BinarySearchTree();

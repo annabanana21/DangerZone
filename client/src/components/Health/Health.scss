@@ -2,9 +2,9 @@
 @import '../../styles/fonts';
 
 .health {
-    width: 15rem;
+    width: 22.5rem;
     min-width: 5rem;
-    height: 1.5rem;
+    height: 2.25rem;
     border-radius: 7px;
     border: 3px solid white;
     box-sizing: border-box;
@@ -26,8 +26,9 @@
 
     &__title {
         margin: 0;
-        font-family: 'Roboto Mono';
+        font-size: 1.5rem;
+        font-family: 'Roboto Bold';
         margin-bottom: 0.5rem;
-        color: white;
+        color: #424242;
     }
 }
