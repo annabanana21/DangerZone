@@ -41,7 +41,7 @@ class EndScreen extends React.Component {
         let display = [];
         let newList = this.games.filter(obj => obj.type[0] !== this.props.weather[2])
         newList.forEach(game => {
-            display.push(<img src={game.type[1]} className='end__icon' onClick={() => this.props.refresh(game.type[0])}/>)
+            display.push(<img src={game.type[1]} className='end__icon' onClick={() => this.props.refresh(game.type[0])} alt='disaster icon'/>)
         })
         return display;
     }

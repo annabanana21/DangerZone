@@ -94,7 +94,7 @@ class GameController extends React.Component {
     getCoordinates = (position) => {
         const long = position.coords.longitude;
         const lat = position.coords.latitude;
-        axios.get('http://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+long+'&appid='+this.apiKey).then(results => {
+        axios.get('https://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+long+'&appid='+this.apiKey).then(results => {
           this.setState({
               weather: iconPicker(results.data)
           })
