@@ -1,0 +1,14 @@
+.end {
+    height: calc(100vh - 80px);
+    width: 100%;
+    background: url('../../assets/Paper-3.jpg');
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__image {
+        height: 400px;
+    }
+}

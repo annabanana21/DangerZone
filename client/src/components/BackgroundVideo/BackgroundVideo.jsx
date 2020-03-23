@@ -5,9 +5,9 @@ const BackgroundVideo = (props) => {
     if (!props.story.background) {
         console.log('no back', props)
         return null
-    } else if (props.story.background.includes('.jpg')) {
+    } else if (props.story.background.includes('.jpg') || props.story.background.includes('.gif')) {
         return (
-            <div className='video' style={{background: `url(${'http://localhost:8080/public/videos/'+props.story.background})`}}>
+            <div style={{background: `url(${'http://localhost:8080/public/videos/'+props.story.background})`, backgroundPosition: 'center', backgroundSize: 'cover'}} className='video'>
                 {props.children}
             </div>
         )

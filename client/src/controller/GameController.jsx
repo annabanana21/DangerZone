@@ -5,6 +5,7 @@ import Display from '../pages/display';
 import BinarySearchTree from '../functions/binary';
 import iconPicker from '../functions/iconPicker';
 import Loading from '../pages/loading';
+import EndScreen from '../components/EndScreen/EndScreen';
 
 class GameController extends React.Component {
 
@@ -15,6 +16,8 @@ class GameController extends React.Component {
             isHome: false,
             isPlaying: false,
             load: true,
+            ended: false,
+            lastStory: false,
             story: [],
             storyLeft: [],
             userStats: {
@@ -84,22 +87,47 @@ class GameController extends React.Component {
     }
 
     lose(healthLoss, home) {
-        console.log(home);
+
+        let goHome = home;
+        let newHealth = this.state.userStats.health - healthLoss
         let theyLost = false;
-        if (this.state.userStats.health - healthLoss <= 0) {
-            theyLost = true
+        let ended = false;
+        let isPlaying = !home;
+        if (newHealth <= 0) {
+            theyLost = true;
+            newHealth = 0;
+            ended = true;
+            isPlaying = false
+            goHome = false
         }
-        let newArr = this.state.storyLeft.slice(1);
-        console.log(newArr)
-        this.setState({
-            isHome: home,
-            storyLeft: newArr,
-            isPlaying: !home,
-            userStats: {
-                health: this.state.userStats.health - healthLoss,
-                lost: theyLost
+        if (this.state.lastStory && newHealth > 0) {
+            this.setState({
+                isHome: false,
+                ended: true,
+                isPlaying: false,
+                userStats: {
+                    health: newHealth,
+                    lost: false
+                }
+            })
+        } else {
+           let lastStory = false;
+            let newArr = this.state.storyLeft.slice(1);
+            if (newArr[0] === this.state.story[this.state.story.length-1]) {
+                lastStory = true
             }
-        })
+            this.setState({
+                isHome: goHome,
+                ended: ended,
+                storyLeft: newArr,
+                isPlaying: isPlaying,
+                lastStory,
+                userStats: {
+                    health: newHealth,
+                    lost: theyLost
+                }
+            }) 
+        }
     }
 
     startGame() {
@@ -115,8 +143,11 @@ class GameController extends React.Component {
                 <Main population={this.state.population} health={this.state.userStats} weather={this.state.weather} story={this.state.story} storyLeft={this.state.storyLeft} change={() => this.change()}/>
             )
         } else if (this.state.isPlaying) {
-            return <Display story={this.state.storyLeft[0]} change={() => this.change()} lose={(i,x) => this.lose(i,x)} nextStory={() => this.nextStory()}/>;
-        } else {
+            return <Display lastStory={this.state.lastStory} health={this.state.userStats} story={this.state.storyLeft[0]} change={() => this.change()} lose={(i,x) => this.lose(i,x)} nextStory={() => this.nextStory()}/>;
+        } else if (this.state.ended) {
+            return <EndScreen lost={this.state.userStats.lost}/>
+        }
+        else {
             return <Loading startGame={() => this.startGame()}/>
         }
     }

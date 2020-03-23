@@ -4,14 +4,26 @@ import Slide from '../components/Slide/Slide';
 import Complete from '../components/Complete/Complete';
 import BackgroundVideo from '../components/BackgroundVideo/BackgroundVideo';
 import SlideController from '../controller/SlideController';
+import Intro from '../components/Intro/Intro';
 
 class Display extends React.Component {
+
+    state={
+        intro: true,
+        showButton: false
+    }
 
     componentDidMount() {
         this.audio = new Audio('http://localhost:8080/public/audio/'+this.props.story.audio);
         this.audio.load();
         this.audio.loop = true;
         this.playAudio();
+
+        setTimeout(() => {
+            this.setState({
+                showButton: true
+            })
+        }, 6000)
     }
 
     componentWillUnmount() {
@@ -20,12 +32,22 @@ class Display extends React.Component {
 
     componentDidUpdate(prevProps) {
         if (prevProps.story !== this.props.story) {
-            console.log('here');
             this.audio.pause();
             this.audio = new Audio('http://localhost:8080/public/audio/'+this.props.story.audio);
             this.audio.load();
             this.audio.loop = true;
             this.playAudio();
+
+            this.setState({
+                intro: true,
+                showButton: false
+            })
+
+            setTimeout(() => {
+                this.setState({
+                    showButton: true
+                })
+            }, 6000)
         }
     }
 
@@ -43,13 +65,20 @@ class Display extends React.Component {
         }
     }
 
+    startStory() {
+        this.setState({
+            intro: false
+        })
+    }
+
     render() {
-        console.log('I re-mount')
-        return (
-            <div>
-                <BackgroundVideo story={this.props.story}><SlideController lose={this.props.lose} story={this.props.story} change={this.props.change} nextStory={this.props.nextStory}/></BackgroundVideo>
-            </div>
-        )
+        if (this.state.intro) {
+            console.log('I went into intro')
+            return <Intro showButton={this.state.showButton} intro={this.props.story.intro} startStory={() => this.startStory()}/>
+        } else {
+            console.log('I went normal')
+            return <BackgroundVideo story={this.props.story}><SlideController lastStory={this.props.lastStory} health={this.props.health} lose={this.props.lose} story={this.props.story} change={this.props.change} nextStory={this.props.nextStory}/></BackgroundVideo>  
+        }
     }
 }
 

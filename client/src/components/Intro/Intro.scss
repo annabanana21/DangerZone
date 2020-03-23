@@ -1,0 +1,47 @@
+@import '../../styles/fonts';
+
+* {
+    margin: 0;
+}
+
+.intro {
+    height: calc(100vh - 80px);
+    width: 100%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 0 2rem;
+
+    &__story {
+        font-size: 2rem;
+        color: white;
+        font-family: 'Roboto Mono';
+    }
+
+    &__button {
+        @extend .intro__story;
+        position: absolute;
+        bottom: 4rem;
+        right: 4rem;
+    }
+}
+
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.fade-in {
+	opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 2s;
+}
