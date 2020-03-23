@@ -6,12 +6,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #FECE0A;
+    background-color: $accent;
 
     &__title {
         font-family: 'Roboto Mono';
         font-size: 2.5rem;
-        color: #424242;
+        color: $text;
         text-align: center;
         margin: 0;
     }
@@ -24,5 +24,10 @@
         align-items: center;
         flex-direction: column;
         border: 2px solid white;
+    }
+
+    &__slant {
+        font-style: italic;
+        color: $text;
     }
 }

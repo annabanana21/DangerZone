@@ -17,7 +17,7 @@
         background: url('../../assets/Paper-3.jpg');
         background-position: center;
         background-size: cover;
-        color: #424242;
+        color: $text;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -37,7 +37,7 @@
     &__box {
         width: 45%;
         height: fit-content;
-        border: 2px solid #424242;
+        border: 2px solid $text;
         color: white;
         display: flex;
         align-items: center;
