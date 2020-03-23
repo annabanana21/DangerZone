@@ -122,6 +122,12 @@ class GameController extends React.Component {
         this.getLocation();
     }
 
+    componentDidUpdate() {
+        if (this.state.story === []) {
+            this.getLocation();
+        }
+    }
+
     change() {
         this.setState({
             isHome: !this.state.isHome,
