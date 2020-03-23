@@ -28,7 +28,7 @@ export default class StoryBoard extends React.Component {
         let display = [];
         this.props.story.forEach((story, index) => {
             if (index === amount) {
-                display.push(<div className='story__row' key={uuid()}><div className='story__check'></div><h3 className='story__stage' onClick={this.props.change}>{story.title}</h3></div>)
+                display.push(<div className='story__row' key={uuid()}><div className='story__check'></div><h3 className='story__stage--current' onClick={this.props.change}>{story.title}</h3></div>)
             } else if (index > amount) {
                 display.push(<div className='story__row' key={uuid()}><div className='story__check'></div><h3 className='story__stage--blur'>{story.title}</h3></div>)
             } else {

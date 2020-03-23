@@ -2,6 +2,9 @@ import React from 'react';
 import './EndScreen.scss';
 import lose from '../../assets/lose.png';
 import win from '../../assets/win.png';
+import earthquake from '../../assets/Icons/Earthquake.svg';
+import freeze from '../../assets/Icons/ColdWave.svg';
+import tornado from '../../assets/Icons/Hurricane.svg';
 
 class EndScreen extends React.Component {
 
@@ -11,6 +14,7 @@ class EndScreen extends React.Component {
             health: 0,
             interval: ''
         }
+        this.games = [{type: ['earth', earthquake]}, {type: ['freeze', freeze]}, {type: ['wind', tornado]}]
     }
 
     componentDidMount() {
@@ -33,6 +37,15 @@ class EndScreen extends React.Component {
         }
     }
 
+    showGames = () => {
+        let display = [];
+        let newList = this.games.filter(obj => obj.type[0] !== this.props.weather[2])
+        newList.forEach(game => {
+            display.push(<img src={game.type[1]} className='end__icon' onClick={() => this.props.refresh(game.type[0])}/>)
+        })
+        return display;
+    }
+
     render() {
         return (
             <div className='end'>
@@ -47,13 +60,19 @@ class EndScreen extends React.Component {
                 {
                     !this.props.stats.lost && (
                         <>
+                        <div className='end__icon-box'>
+                        <h3 className='end__small'>TRY THE OTHER GAMES!</h3>
+                        {
+                            this.showGames()
+                        }
+                        </div>
                         <img src={win} className='end__image' alt='Skull with old school pilot hat on'/>
                         <h2 className='end__title'>YOU WIN</h2>
                         <h3 className='end__percent'>{this.state.health}% HEALTH REMAINING</h3>
                         </>
                         )
                 }
-                <div className='end__button' onClick={this.props.refresh}>PLAY AGAIN</div>
+                <div className='end__button' onClick={() => this.props.refresh(null)}>PLAY AGAIN</div>
             </div>
         )
     }

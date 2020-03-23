@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/static/css/main.83ce697c.chunk.css",
+    "main.js": "/static/js/main.a56065bb.chunk.js",
+    "main.js.map": "/static/js/main.a56065bb.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.4816bcef.js",
+    "runtime-main.js.map": "/static/js/runtime-main.4816bcef.js.map",
+    "static/js/2.d97bed88.chunk.js": "/static/js/2.d97bed88.chunk.js",
+    "static/js/2.d97bed88.chunk.js.map": "/static/js/2.d97bed88.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.da796686f9ad3c4c7e693061feb86548.js": "/precache-manifest.da796686f9ad3c4c7e693061feb86548.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.83ce697c.chunk.css.map": "/static/css/main.83ce697c.chunk.css.map",
+    "static/js/2.d97bed88.chunk.js.LICENSE.txt": "/static/js/2.d97bed88.chunk.js.LICENSE.txt",
+    "static/media/ColdWave.svg": "/static/media/ColdWave.1bb3d552.svg",
+    "static/media/Danger.svg": "/static/media/Danger.b5037a66.svg",
+    "static/media/Earthquake.svg": "/static/media/Earthquake.56851e29.svg",
+    "static/media/EndScreen.scss": "/static/media/RobotoMono-Regular.b4618f1f.ttf",
+    "static/media/Hurricane.svg": "/static/media/Hurricane.35375e9f.svg",
+    "static/media/loading.scss": "/static/media/Lantern.e589e3e7.jpg",
+    "static/media/checkmark.png": "/static/media/checkmark.f3853eaf.png",
+    "static/media/clipboard-clip.png": "/static/media/clipboard-clip.699d568f.png",
+    "static/media/lose.png": "/static/media/lose.e7379e4c.png",
+    "static/media/win.png": "/static/media/win.9670af2e.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4816bcef.js",
+    "static/js/2.d97bed88.chunk.js",
+    "static/css/main.83ce697c.chunk.css",
+    "static/js/main.a56065bb.chunk.js"
+  ]
+}
