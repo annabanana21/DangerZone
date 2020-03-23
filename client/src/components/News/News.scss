@@ -1,5 +1,6 @@
 @import '../../styles/fonts';
 @import '../../styles/colors';
+@import '../../styles/mixins';
 
 * {
     box-sizing: border-box;
@@ -52,6 +53,7 @@
         border-radius: 6px;
         border: 8px solid white;
         box-shadow: 0 0 6px 2px rgba(0,0,0,.1);
+        padding: 0 1rem;
 
         &--small {
             @extend .news__box;
@@ -74,6 +76,9 @@
 
         &--small {
             width: 50%;
+            @include large-desktop {
+                width: 40%;
+            }
         }
     }
 }

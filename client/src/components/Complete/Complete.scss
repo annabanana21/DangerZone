@@ -32,6 +32,14 @@
         align-items: center;
         height: 3rem;
         width: 7rem;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        &:focus {
+            box-shadow: inset 1px 1px 10px black;
+        }
     }
 
     &__prompt {
