@@ -12,11 +12,18 @@ class Complete extends React.Component {
     }
 
     componentDidMount() {
-        this.state.interval = setInterval(() => {
+        //If user loses any health at all start interval to show health going down
+        if (this.props.story.loss > 0) {
             this.setState({
-                health: this.state.health - 1
+                interval: setInterval(() => {
+                    this.setState({
+                        health: this.state.health - 1
+                    })
+                }, 20)
             })
-        }, 20)
+        }
+
+        //If health dips below 0 hide home and next button and prepare for losing screen
         if (this.props.health.health - this.props.story.loss*100 <= 0) {
             this.setState({
                 died: true
@@ -24,6 +31,7 @@ class Complete extends React.Component {
             setTimeout(() => {
                 this.props.lose(this.props.story.loss*100, true);
             }, 6000)
+        //User encounters the last scenario in the story prepare for winning screen
         } else if (this.props.lastStory) {
             this.setState({
                 completed: true
@@ -35,18 +43,17 @@ class Complete extends React.Component {
     }
 
     componentDidUpdate() {
-        if (this.state.health === this.props.health.health - this.props.story.loss*100 || this.state.health === 0) {
+        //Stop showing health decrease when the health meter has shown the complete percent lost
+        if (this.state.interval !== '' && (this.state.health === this.props.health.health - this.props.story.loss*100 || this.state.health === 0)) {
             clearInterval(this.state.interval)
         }
     }
 
+    componentWillUnmount() {
+        clearInterval(this.state.interval);
+    }
+
     render() {
-        let word = '';
-        if (this.props.story.loss === 0) {
-            word = 'SUCCESS';
-        } else {
-            word = `-${this.props.story.loss*100}%`;
-        }
         return (
             <div className='complete'>
                 <div className='complete__prompt'>{this.props.story.story}</div>

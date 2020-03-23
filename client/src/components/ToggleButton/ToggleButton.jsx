@@ -5,7 +5,7 @@ import './ToggleButton.scss';
 function ToggleButton(props) {
     return (
         <div>
-            <img src={clip} className='button__task' onClick={props.display}/>
+            <img src={clip} className='button__task' onClick={props.display} alt='Cartoon clipboard'/>
             <div className='button__alert getBig'>!</div>
         </div>
     )

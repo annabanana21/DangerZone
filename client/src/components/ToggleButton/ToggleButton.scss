@@ -13,9 +13,9 @@
     &__alert {
         height: 40px;
         width: 40px;
-        color: #424242;
+        color: $text;
         font-family: 'Grobold';
-        background-color: #FECE0A;
+        background-color: $accent;
         position: absolute;
         bottom: 140px;
         left: 120px;

@@ -1,7 +1,5 @@
 import React from 'react';
 import './display.scss';
-import Slide from '../components/Slide/Slide';
-import Complete from '../components/Complete/Complete';
 import BackgroundVideo from '../components/BackgroundVideo/BackgroundVideo';
 import SlideController from '../controller/SlideController';
 import Intro from '../components/Intro/Intro';
@@ -47,7 +45,7 @@ class Display extends React.Component {
                 this.setState({
                     showButton: true
                 })
-            }, 6000)
+            }, 4000)
         }
     }
 
@@ -73,10 +71,8 @@ class Display extends React.Component {
 
     render() {
         if (this.state.intro) {
-            console.log('I went into intro')
             return <Intro showButton={this.state.showButton} intro={this.props.story.intro} startStory={() => this.startStory()}/>
         } else {
-            console.log('I went normal')
             return <BackgroundVideo story={this.props.story}><SlideController lastStory={this.props.lastStory} health={this.props.health} lose={this.props.lose} story={this.props.story} change={this.props.change} nextStory={this.props.nextStory}/></BackgroundVideo>  
         }
     }
