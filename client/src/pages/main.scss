@@ -21,6 +21,12 @@
         cursor: pointer;
     }
 
+    &__health {
+        position: absolute;
+        bottom: 2rem;
+        right: 2rem;
+    }
+
     &__alert {
         height: 40px;
         width: 40px;

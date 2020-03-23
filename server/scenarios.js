@@ -38,7 +38,7 @@ const snakeStory = {
 ]}
 
 const frozenPlunge = {
-    intro: 'Your mission to save your friend is a success. However, on the drive home you lose control of the car and it swerves off the road...',
+    intro: "You decide to go pick your friends up to surive the harsh weather together. However, on the drive you lose control of the car and it swerves off the road...",
     title: 'Ice Plunge',
     background: 'water.gif',
     sound: 'Water.wav',
@@ -136,7 +136,7 @@ const avalanche = {
 }
 
 const earthquake = {
-    intro: 'Earthquake intro',
+    intro: "You're walking down your street enjoying the outdoors. As your walking you notice a persistant vibration which is enough to unsettle you...",
     title: 'Earthquake',
     category: 'earth',
     background: 'earthquake.gif',
@@ -154,7 +154,7 @@ const earthquake = {
     ]
 }
 const buried = {
-    intro: "You don't remember what happened",
+    intro: "You don't remember what exactly happened but what felt like minutes ago you were calling the police...",
     title: 'Buried Alive',
     sound: 'buried.wav',
     category: 'earth',
@@ -173,13 +173,13 @@ const buried = {
 }
 
 const plane = {
-    intro: "Being too dangerous to travel by land",
+    intro: "Being too dangerous to travel by land because of the crime rate your friend offers to drive you around in his passenger plane. You trust him and take advantage of the free rides. Mid flight you two are having a conversation and suddenly he stops responding. Your friend has passed out cold in their chair...",
     title: 'Crash Landing',
     category: 'wind',
     background: 'sky.gif',
     sound: 'plane.wav',
     scenario: [
-        new Story(100, "Once seated you notice there are a bunch of buttons a levers but you have no idea what they do. There's a steering wheel that seems easy enough...", 'Take control of the wheel', 'Look for a guide/manual'),
+        new Story(100, "Once you've pushed them out and taken their seat you notice there are a bunch of buttons a levers but you have no idea what they do. There's a steering wheel that seems easy enough...", 'Take control of the wheel', 'Look for a guide/manual'),
         new Story(130, "In your state of panic you are able to scan the manual long enough to figure out what the throttle does", 'Look for an open field', 'Start looking for an open body of water'),
         new Story(140, 'Soon enough you approach a lake', 'Just go for the landing before your nerves make you pass out too', 'Turn the plane around to circle the area'),
         new Story(150, "You're less than 100 meters away from the surface of water", 'Approach the water aiming to land rear first with landing gear deactivated.', 'Approach the water nose angled downwards with the landing gear activated'),
@@ -222,7 +222,7 @@ const plane = {
 }
 
 const tornado = {
-    intro: "Your trip is a success",
+    intro: "You knew it was risky to drive with the tornado warnings but you do it anyways. You're driving down an isolated country road when you see a wind storm in the distance...",
     title: "Tornado", 
     category: 'wind',
     background: 'Tornado.gif',
@@ -243,13 +243,13 @@ const tornado = {
 }
 
 const blizzard = {
-    intro: "You've survived up until now but here's the real challenge",
+    intro: "You've survived up until now but here's the real challenge. Just as you pull yourself out of the water you notice it is unusually quiet...",
     title: "Blizzard",
     category: 'freeze',
     background: 'snow.gif',
     sound: 'Blizzard.wav',
     scenario: [
-        new Story(80, "The snow begins falling fast and temperatures are hitting all time lows. Do you...", 'Start looking for wood to build a fire', 'Look for materials to build a shelter'),
+        new Story(80, "The snow begins falling fast now and temperatures are hitting all time lows. Do you...", 'Start looking for wood to build a fire', 'Look for materials to build a shelter'),
         new Story(40, "Luckily the pond your car plunged into was surrounded by plenty of trees", 'Look for dying trees or decayed logs', 'Break thin branches off nearby trees'),
         new Story(10, "You have a lighter and it survived the plunge in the water. Lighting a fire without tinder is hard enough but the wind chill makes it impossible. So you...", "You've already walked quite a distance. If you keep heading south opposite the wind you're bound to find a building", 'Start thinking about building a shelter'),
         new Story(5, "While you're walking the wind chill quickly makes your body temperature plummet. The risk of  hypothermia increases every minute you are exposed to the cold weather. You and your partner become irrationally hot and remove your clothes. You both freeze to death and even worse are found naked.", null, null, 0.70),
@@ -300,6 +300,7 @@ const blizzard = {
 }
 
 const bear = {
+    intro: "You are hiking through the woods. Everything is beautiful and the peace the forest provides is much needed. Suddenly it feels like something is following you...",
     title: 'Bear Fight',
     category: 'wind',
     background: 'bear.gif',
@@ -349,22 +350,10 @@ const bear = {
 
 const scenarios = [tornado, plane, buried, earthquake, avalanche, frozenPlunge, snakeStory, blizzard, bear];
 
-const createBinaryObject = (story) => {
-    let newTree = new BinarySearchTree();
-    story.scenario.forEach(slide => {
-        newTree.insert(slide)
-    })
-
-    return {
-        title: story.title,
-        category: story.category,
-        tree: newTree
-    }
-}
-
-const generateBinary = (key) => {
+const generateStory = (key) => {
+    //returns array with stories based on the desired category
     let filteredArray = scenarios.filter(story => story.category === key);
     return filteredArray;
 }
 
-exports.generateBinary = generateBinary;
+exports.generateStory = generateStory;
