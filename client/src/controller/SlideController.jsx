@@ -1,6 +1,7 @@
 import React from 'react';
 import Complete from '../components/Complete/Complete';
 import Slide from '../components/Slide/Slide';
+import Intro from '../components/Intro/Intro';
 
 class SlideController extends React.Component {
 
@@ -25,7 +26,7 @@ class SlideController extends React.Component {
     }
 
     nextSlide(slide) {
-        if (slide.right && slide.left) {
+        if (slide.right || slide.left) {
             this.setState(
                 {
                     stage: slide
@@ -42,11 +43,12 @@ class SlideController extends React.Component {
     }
 
     render() {
+        console.log(this.state.stage)
         if (!this.state.finish) {
             return <Slide story={this.state.stage} nextHandler={(slide) => this.nextSlide(slide)}/>
         } else {
-            return <Complete story={this.state.stage} change={this.props.change} lose={this.props.lose} nextStory={this.props.nextStory}/>
-        }
+            return <Complete lastStory={this.props.lastStory} health={this.props.health} story={this.state.stage} change={this.props.change} lose={this.props.lose} nextStory={this.props.nextStory}/>
+        } 
     }
 }
 
