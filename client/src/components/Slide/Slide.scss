@@ -45,5 +45,13 @@
         border-radius: 4px;
         padding: 1rem;
         font-size: 1.3rem;
+
+        &:active {
+            border-color: white;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 }

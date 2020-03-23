@@ -6,6 +6,9 @@ import BinarySearchTree from '../functions/binary';
 import iconPicker from '../functions/iconPicker';
 import Loading from '../pages/loading';
 import EndScreen from '../components/EndScreen/EndScreen';
+import earth from '../assets/Icons/Earthquake.svg';
+import cold from '../assets/Icons/ColdWave.svg';
+import tornado from '../assets/Icons/Hurricane.svg';
 
 class GameController extends React.Component {
 
@@ -28,10 +31,17 @@ class GameController extends React.Component {
             population: Math.floor(Math.random() * 2000000) + 250000
         }
         this.apiKey = '4774ad80334f760f9b45af484c39e9fe';
+        this.games = [['TORNADO WARNING', tornado, 'wind'], ['DEEP FREEZE', cold, 'freeze'], ['EARTHQUAKE WARNING', earth, 'earth']]
     }
 
-    refresh() {
-        this.getLocation();
+    refresh(keyWord) {
+        console.log(keyWord)
+        if (!keyWord) {
+            this.getLocation();
+        } else {
+            this.manualSet(keyWord);
+            this.getStoryLine(keyWord);
+        }
         this.setState({
             isHome: true,
             isPlaying: false,
@@ -41,6 +51,19 @@ class GameController extends React.Component {
                 health: 100,
                 lost: false
             }
+        })
+    }
+
+    manualSet = (keyWord) => {
+        let details = this.games.find(game => game[2] === keyWord);
+        let weather = this.state.weather[3]
+        if (weather < -20 && details[0] !== 'DEEP FREEZE') {
+            weather = weather + 40;
+        } else if (weather > -40 && details[0] === 'DEEP FREEZE') {
+            weather = weather-40;
+        }
+        this.setState({
+            weather: [...details, weather]
         })
     }
 
@@ -75,7 +98,7 @@ class GameController extends React.Component {
           this.setState({
               weather: iconPicker(results.data)
           })
-          this.getStoryLine()
+          this.getStoryLine(this.state.weather[2])
         })
     }
 
@@ -85,8 +108,8 @@ class GameController extends React.Component {
         }
     }
 
-    getStoryLine() {
-        axios.get('http://localhost:8080/story/'+this.state.weather[2]).then(res => {
+    getStoryLine(category) {
+        axios.get('http://localhost:8080/story/'+category).then(res => {
             let storyLine = this.formatData(res.data)
             this.setState({
                 story: storyLine,
@@ -165,7 +188,7 @@ class GameController extends React.Component {
         } else if (this.state.isPlaying) {
             return <Display lastStory={this.state.lastStory} health={this.state.userStats} story={this.state.storyLeft[0]} change={() => this.change()} lose={(i,x) => this.lose(i,x)} nextStory={() => this.nextStory()}/>;
         } else if (this.state.ended) {
-            return <EndScreen stats={this.state.userStats} refresh={() => {this.refresh()}}/>
+            return <EndScreen weather={this.state.weather} stats={this.state.userStats} refresh={(x) => {this.refresh(x)}}/>
         }
         else {
             return <Loading startGame={() => this.startGame()}/>
