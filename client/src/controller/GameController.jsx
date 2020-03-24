@@ -9,6 +9,7 @@ import EndScreen from '../components/EndScreen/EndScreen';
 import earth from '../assets/Icons/Earthquake.svg';
 import cold from '../assets/Icons/ColdWave.svg';
 import tornado from '../assets/Icons/Hurricane.svg';
+const pingURL = process.env.REACT_APP_BACKEND_SERVER || 'http://localhost:8080';
 
 class GameController extends React.Component {
 
@@ -109,7 +110,7 @@ class GameController extends React.Component {
     }
 
     getStoryLine(category) {
-        axios.get('http://localhost:8080/story/'+category).then(res => {
+        axios.get(pingURL+'/story/'+category).then(res => {
             let storyLine = this.formatData(res.data)
             this.setState({
                 story: storyLine,
@@ -120,12 +121,6 @@ class GameController extends React.Component {
 
     componentDidMount() {
         this.getLocation();
-    }
-
-    componentDidUpdate() {
-        if (this.state.story === []) {
-            this.getLocation();
-        }
     }
 
     change() {
