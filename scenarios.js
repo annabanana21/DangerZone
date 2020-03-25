@@ -1,5 +1,3 @@
-const BinarySearchTree = require('./functions/linked');
-
 class Story {
     constructor(value, story, leftOption, rightOption, loss) {
         this.value = value;
