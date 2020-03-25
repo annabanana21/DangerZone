@@ -6,7 +6,9 @@
   # been specified, include it in the publish directory path.
   publish = "client/build"
   # Default build command.
-  command = "cd client && npm install && npm run build"
+  command = "npm run build"
+  publish="client/build"
+  base = "client"
 # Production context: all deploys from the Production branch set in your site's 
 # deploy contexts will inherit these settings.
 [context.master.environment]
