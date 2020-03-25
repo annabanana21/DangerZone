@@ -12,7 +12,7 @@
 # deploy contexts will inherit these settings.
 [context.master.environment]
   # environment variables
-  REACT_APP_BACKEND_SERVER = "https://salty-forest-96845.herokuapp.com/" 
+  REACT_APP_BACKEND_SERVER = "https://salty-forest-96845.herokuapp.com" 
 [[redirects]]
   from = "/*"
   to = "/index.html"
