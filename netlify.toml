@@ -7,6 +7,7 @@
   # Default build command.
   command = "npm run build"
   publish="client/build"
+  base = ""
 # Production context: all deploys from the Production branch set in your site's 
 # deploy contexts will inherit these settings.
 [context.master.environment]
