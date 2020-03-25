@@ -11,8 +11,10 @@ class Display extends React.Component {
         showButton: false
     }
 
+    pingURL = process.env.REACT_APP_BACKEND_SERVER || 'http://localhost:8080';
+
     componentDidMount() {
-        this.audio = new Audio('http://localhost:8080/public/audio/'+this.props.story.audio);
+        this.audio = new Audio(this.pingURL+this.props.story.audio);
         this.audio.load();
         this.audio.loop = true;
         this.playAudio();
@@ -31,7 +33,7 @@ class Display extends React.Component {
     componentDidUpdate(prevProps) {
         if (prevProps.story !== this.props.story) {
             this.audio.pause();
-            this.audio = new Audio('http://localhost:8080/public/audio/'+this.props.story.audio);
+            this.audio = new Audio(this.pingURL+this.props.story.audio);
             this.audio.load();
             this.audio.loop = true;
             this.playAudio();
