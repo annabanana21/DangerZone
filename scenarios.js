@@ -15,8 +15,8 @@ class Story {
 const snakeStory = {
     intro: "You’re on your way to gather supplies and medicine. To conserve the gas left in your car you decide to walk the 2km to the nearest pharmacy. You can shave off a km of the walk by cutting through a ravine, and also avoid and rogue criminals. Halfway there you trip over what you first think is a tree stump but then you feel a sharp pain in your right ankle...",
     title: 'Snake Bite',
-    background: 'snake.gif',
-    sound: 'Snake.wav',
+    background: '/visuals/videos/snake.gif',
+    sound: '/visuals/audio/Snake.wav',
     category: 'earth',
     scenario: [
     new Story(8, "You've just been bitten by a snake! What do you do next...", 'Run back home', 'Sit down and assess the situation'),
@@ -39,8 +39,8 @@ const snakeStory = {
 const frozenPlunge = {
     intro: "You decide to go pick your friends up to survive the harsh weather together. However, on the drive you lose control of the car and it swerves off the road...",
     title: 'Ice Plunge',
-    background: 'water.gif',
-    sound: 'Water.wav',
+    background: '/visuals/videos/water.gif',
+    sound: '/visuals/audio/Water.wav',
     category: 'freeze',
     scenario: [
         new Story(55, "Your car has gained incredible momentum and eventually makes impact with what sounds like glass. You hear cracking and suddenly your car plunges into water...", "Luckily you know your exact coordinates so call the police and wait for help", "Roll down your window and escape"),
@@ -104,8 +104,8 @@ const frozenPlunge = {
 const avalanche = {
     intro: 'You’re on your way to gather supplies and medicine. To conserve the gas left in your car you decide to walk to the nearest pharmacy. It’s a quick walk but it’s up a steep mountain (at least it feels that way). Halfway up you notice vibration and hear a rumbling…',
     title: 'Avalanche',
-    background: 'Avalanche.gif',
-    sound: 'Avalanche.wav',
+    background: '/visuals/videos/Avalanche.gif',
+    sound: '/visuals/audio/Avalanche.wav',
     category: 'freeze',
     scenario: [
         new Story(50, 'What began as a small cloud of snow is now a monstrous tidal wave. You never could’ve imagined you’d encounter an avalanche so what do you do…', 'Move sideways hoping the force of the avalanche will mostly miss you and brace for impact', 'Start running down the hill. You’re pretty fast and can most likely outrun it'),
@@ -138,8 +138,8 @@ const earthquake = {
     intro: "You're walking down your street enjoying the outdoors. As your walking you notice a persistent vibration which is enough to unsettle you...",
     title: 'Earthquake',
     category: 'earth',
-    background: 'earthquake.gif',
-    sound: 'Earthquake.wav',
+    background: '/visuals/videos/earthquake.gif',
+    sound: '/visuals/audio/Earthquake.wav',
     scenario: [
         new Story(50, 'The ground begins to furiously shake...', 'run for cover', 'run out into the open road'),
         new Story(70, 'You made it safely to the middle of the road and now you', 'stretch your body to absorb the aftershock', 'crouch down staying as low to the ground as possible'),
@@ -155,9 +155,9 @@ const earthquake = {
 const buried = {
     intro: "You don't remember what exactly happened but what felt like minutes ago you were calling the police...",
     title: 'Buried Alive',
-    sound: 'buried.wav',
+    sound: '/visuals/audio/buried.wav',
     category: 'earth',
-    background: 'dark.jpg',
+    background: '/visuals/videos/dark.jpg',
     scenario: [
         new Story(50, "It's very dark and you realize you around lying down. You try to sit up but hit your head on what feels like wood.", "Feel your surroundings in case there's something you can use to escape", "Start the lighter that's in your pocket to see what's going on around you"),
         new Story(60, 'The lighter quickly eats up any available oxygen you have left. In a small space such as a coffin you have at most 2 hours worth of oxygen.', null, null, 0.5),
@@ -175,8 +175,8 @@ const plane = {
     intro: "Being too dangerous to travel by land because of the crime rate, your friend offers to fly you around in his passenger plane. You trust him and take advantage of the free rides. Mid-flight, you are having a conversation and he suddenly stops responding. Your friend has passed out cold in their chair...",
     title: 'Crash Landing',
     category: 'wind',
-    background: 'sky.gif',
-    sound: 'plane.wav',
+    background: '/visuals/videos/sky.gif',
+    sound: '/visuals/audio/plane.wav',
     scenario: [
         new Story(100, "Once you've pushed them out and taken their seat you notice there are a bunch of buttons and levers but you have no idea what they do. There's a steering wheel that seems easy enough...", 'Take control of the wheel', 'Look for a manual'),
         new Story(130, "In your state of panic you are able to scan the manual long enough to figure out what the throttle does", 'Look for an open field', 'Start looking for an open body of water'),
@@ -224,8 +224,8 @@ const tornado = {
     intro: "You knew it was risky to drive with the tornado warnings but you do it anyways. You're driving down an isolated country road when you see a wind storm in the distance...",
     title: "Tornado", 
     category: 'wind',
-    background: 'Tornado.gif',
-    sound: 'Wind.wav',
+    background: '/visuals/videos/Tornado.gif',
+    sound: '/visuals/audio/Wind.wav',
     scenario: [
         new Story(50, "Before you have time to drive out of it's way the tornado is within 100 meters of you", 'Abandon your car', "Stay in your car hoping it'll miss you"),
         new Story(60, "The tornado is quickly approaching and will most likely strike your car", 'buckle your seat belt and curl up on your chair', 'Move to the seat farthest to the back right and buckle your seat belt'),
@@ -245,8 +245,8 @@ const blizzard = {
     intro: "You've survived up until now but here's the real challenge. Just as you pull yourself out of the water you notice it is unusually quiet...",
     title: "Blizzard",
     category: 'freeze',
-    background: 'snow.gif',
-    sound: 'Blizzard.wav',
+    background: '/visuals/videos/snow.gif',
+    sound: '/visuals/audio/Blizzard.wav',
     scenario: [
         new Story(80, "The snow begins falling fast now and temperatures are hitting all time lows. Do you...", 'Start looking for wood to build a fire', 'Look for materials to build a shelter'),
         new Story(40, "Luckily the pond your car plunged into was surrounded by plenty of trees", 'Look for dying trees or decayed logs', 'Break thin branches off nearby trees'),
@@ -302,8 +302,8 @@ const bear = {
     intro: "You are hiking through the woods. Everything is beautiful and the peace the forest provides is much needed. Suddenly it feels like something is following you...",
     title: 'Bear Fight',
     category: 'wind',
-    background: 'bear.gif',
-    sound: 'Bear.wav',
+    background: '/visuals/videos/bear.gif',
+    sound: '/visuals/audio/Bear.wav',
     scenario: [
         new Story(50, "Frozen behind you is a tall light blonde bear. It has locked eyes with you.", 'Back away slowly keeping eye contact. You make no sudden movements', "Keep eye contact lifting your arms above your head to make yourself as tall as possible"),
         new Story(70, "You expected the bear to be intimidated but it appears to be more confused", 'Match his bluff and walk towards him', 'Yell as loud as you can'),
