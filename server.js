@@ -8,6 +8,7 @@ var path = require('path');
 app.use(express.json());
   
 app.use(cors());
+app.use("/public", express.static(__dirname + '/public'));
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*"); 
