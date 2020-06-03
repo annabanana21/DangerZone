@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Main from '../pages/main';
 import axios from 'axios';
 import Display from '../pages/display';
@@ -11,73 +11,66 @@ import cold from '../assets/Icons/ColdWave.svg';
 import tornado from '../assets/Icons/Hurricane.svg';
 const pingURL = process.env.REACT_APP_BACKEND_SERVER || 'http://localhost:8080';
 
-class GameController extends React.Component {
+const GameController = props => {
 
-    constructor(props) {
-        super(props);
+    //Set up state hooks and setters
+    let [isHome, setIsHome] = useState(false);
+    let [isPlaying, setIsPlaying] = useState(false);
+    let [load, isLoading] = useState(true);
+    let [ended, didEnd] = useState(false);
+    let [lastStory, isLast] = useState(false);
+    let [story, setStory] = useState([]);
+    let [storyLeft, setStoryLeft] = useState([]);
+    let [userStats, updateUserStats] = useState({
+        health: 100,
+        lost: false
+    });
+    let [weather, setWeather] = useState([]);
+    let [population, setPopulation] = useState(Math.floor(Math.random() * 2000000) + 250000);
 
-        this.state = {
-            isHome: false,
-            isPlaying: false,
-            load: true,
-            ended: false,
-            lastStory: false,
-            story: [],
-            storyLeft: [],
-            userStats: {
-                health: 100,
-                lost: false
-            },
-            weather: [],
-            population: Math.floor(Math.random() * 2000000) + 250000
-        }
-        this.apiKey = '4774ad80334f760f9b45af484c39e9fe';
-        this.games = [['TORNADO WARNING', tornado, 'wind'], ['DEEP FREEZE', cold, 'freeze'], ['EARTHQUAKE WARNING', earth, 'earth']]
-    }
+    //Local constant variables
+    const apiKey = '4774ad80334f760f9b45af484c39e9fe';
+    const games = [['TORNADO WARNING', tornado, 'wind'], ['DEEP FREEZE', cold, 'freeze'], ['EARTHQUAKE WARNING', earth, 'earth']]
 
-    refresh(keyWord) {
+    const refresh = (keyWord) => {
+        /*Determine whether the app manually starts based on user choice of storyline
+        OR starts based on computer location (default process when app loads)*/ 
         console.log(keyWord)
         if (!keyWord) {
-            this.getLocation();
+            getLocation();
         } else {
-            this.manualSet(keyWord);
-            this.getStoryLine(keyWord);
+            manualSet(keyWord);
+            getStoryLine(keyWord);
         }
-        this.setState({
-            isHome: true,
-            isPlaying: false,
-            ended: false,
-            lastStory: false,
-            userStats: {
-                health: 100,
-                lost: false
-            }
+        setIsHome(true);
+        setIsPlaying(false)
+        didEnd(false);
+        isLast(false);
+        updateUserStats({
+            health: 100,
+            lost: false
         })
     }
 
-    manualSet = (keyWord) => {
-        let details = this.games.find(game => game[2] === keyWord);
-        let weather = this.state.weather[3]
-        if (weather < -20 && details[0] !== 'DEEP FREEZE') {
-            weather = weather + 40;
+    const manualSet = (keyWord) => {
+        /*Makes updates to weather when game is manually reset
+            - Only relevant when deep freeze manipulates temperature */
+        let details = games.find(game => game[2] === keyWord);
+        let weatherNow = weather[3]
+        if (weatherNow < -20 && details[0] !== 'DEEP FREEZE') {
+            weatherNow = weatherNow + 40;
         } else if (weather > -40 && details[0] === 'DEEP FREEZE') {
-            weather = weather-40;
+            weatherNow = weatherNow - 40;
         }
-        this.setState({
-            weather: [...details, weather]
-        })
+        setWeather([...details, weatherNow])
     }
 
-    popSetter(newPopulation) {
-        this.setState(
-            {
-                population: newPopulation
-            }
-        )
+    const popSetter = (newPopulation) => {
+        setPopulation(newPopulation)
     }
 
 
-    formatData(arr) {
+    const formatData = (arr) => {
         return arr.map(object => {
             let newTree = new BinarySearchTree()
             newTree.insertAll(object.scenario)
@@ -92,109 +85,103 @@ class GameController extends React.Component {
         })
     }
 
-    getCoordinates = (position) => {
+    const getCoordinates = (position) => {
+        /*Retrieves user's coordinates and makes a request to the weather api. 
+        Based on weather output a story line is selected*/
+        
         const long = position.coords.longitude;
         const lat = position.coords.latitude;
-        axios.get('https://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+long+'&appid='+this.apiKey).then(results => {
-          this.setState({
-              weather: iconPicker(results.data)
-          })
-          this.getStoryLine(this.state.weather[2])
+        axios.get('https://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+long+'&appid='+apiKey).then(results => {
+          setWeather(iconPicker(results.data))
+          getStoryLine(weather[2])
         })
     }
 
-    getLocation = () => {
+    const getLocation = () => {
+        //TODO: prompt user to allow location access 
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(this.getCoordinates);
+            navigator.geolocation.getCurrentPosition(getCoordinates);
         }
     }
 
-    getStoryLine(category) {
+    const getStoryLine = (category) => {
         axios.get(pingURL+'/story/'+category).then(res => {
-            let storyLine = this.formatData(res.data)
-            this.setState({
-                story: storyLine,
-                storyLeft: [...storyLine]
-            })
+            let storyLine = formatData(res.data)
+            setStoryLeft([...storyLine]);
+            setStory(storyLine);
         })
     }
 
-    componentDidMount() {
-        this.getLocation();
+    useEffect = (() => {
+        getLocation();
+    }, [])
+
+    useEffect( () => {
+        console.log("Changes were made")
+    }, [isHome, isPlaying, load, ended])
+
+    const change = () => {
+        setIsHome(!isHome);
+        setIsPlaying(!isPlaying);
     }
 
-    change() {
-        this.setState({
-            isHome: !this.state.isHome,
-            isPlaying: !this.state.isPlaying
-        })
-    }
-
-    lose(healthLoss, home) {
+    const lose = (healthLoss, home) => {
 
         let goHome = home;
-        let newHealth = this.state.userStats.health - healthLoss
+        let newHealth = userStats.health - healthLoss
         let theyLost = false;
         let ended = false;
-        let isPlaying = !home;
+        let keepPlaying = !home;
         if (newHealth <= 0) {
             theyLost = true;
             newHealth = 0;
             ended = true;
-            isPlaying = false
+            keepPlaying = false
             goHome = false
         }
         if (this.state.lastStory && newHealth > 0) {
-            this.setState({
-                isHome: false,
-                ended: true,
-                isPlaying: false,
-                userStats: {
-                    health: newHealth,
-                    lost: false
-                }
+            setIsHome(false)
+            didEnd(true);
+            setIsPlaying(false);
+            updateUserStats({
+                health: newHealth,
+                lost: false
             })
         } else {
-           let lastStory = false;
-            let newArr = this.state.storyLeft.slice(1);
-            if (newArr[0] === this.state.story[this.state.story.length-1]) {
+            let last = false;
+            let newArr = storyLeft.slice(1);
+            if (newArr[0] === story[story.length-1]) {
                 lastStory = true
             }
-            this.setState({
-                isHome: goHome,
-                ended: ended,
-                storyLeft: newArr,
-                isPlaying: isPlaying,
-                lastStory,
-                userStats: {
-                    health: newHealth,
-                    lost: theyLost
-                }
-            }) 
+            setIsHome(goHome);
+            didEnd(ended);
+            setStoryLeft(newArr);
+            setIsPlaying(keepPlaying);
+            isLast(last);
+            updateUserStats({
+                health: newHealth,
+                lost: theyLost
+            })
         }
     }
 
-    startGame() {
-        this.setState({
-            load: false,
-            isHome: true
-        })
+    const startGame = () => {
+        isLoading(false);
+        setIsHome(true);
     }
 
-    render() {
-        if (this.state.isHome) {
+        if (isHome) {
             return (
-                <Main popSetter={(x) => this.popSetter(x)} population={this.state.population} health={this.state.userStats} weather={this.state.weather} story={this.state.story} storyLeft={this.state.storyLeft} change={() => this.change()}/>
+                <Main popSetter={(x) => popSetter(x)} population={population} health={userStats} weather={weather} story={story} storyLeft={storyLeft} change={() => change()}/>
             )
-        } else if (this.state.isPlaying) {
-            return <Display lastStory={this.state.lastStory} health={this.state.userStats} story={this.state.storyLeft[0]} change={() => this.change()} lose={(i,x) => this.lose(i,x)} nextStory={() => this.nextStory()}/>;
-        } else if (this.state.ended) {
-            return <EndScreen weather={this.state.weather} stats={this.state.userStats} refresh={(x) => {this.refresh(x)}}/>
+        } else if (isPlaying) {
+            return <Display lastStory={lastStory} health={userStats} story={storyLeft[0]} change={() => change()} lose={(i,x) => lose(i,x)} nextStory={() => nextStory()}/>;
+        } else if (ended) {
+            return <EndScreen weather={weather} stats={userStats} refresh={(x) => {refresh(x)}}/>
         }
         else {
-            return <Loading startGame={() => this.startGame()}/>
+            return <Loading startGame={() => startGame()}/>
         }
-    }
 }
 
 export default GameController;
