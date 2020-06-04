@@ -13,14 +13,12 @@ const pingURL = process.env.REACT_APP_BACKEND_SERVER || 'http://localhost:8080';
 
 const GameController = props => {
 
-    //Set up state hooks and setters
-    let [isHome, setIsHome] = useState(false);
-    let [isPlaying, setIsPlaying] = useState(false);
-    let [load, isLoading] = useState(true);
-    let [ended, didEnd] = useState(false);
+    //TODO: Refine tracker to use strings to indicate where user is
+    // Combine story with story left or use number variable
+    let [tracker, changeTrack] = useState("load")
     let [lastStory, isLast] = useState(false);
     let [story, setStory] = useState([]);
-    let [storyLeft, setStoryLeft] = useState([]);
+    let [storyLeft, setStoryLeft] = useState(0);
     let [userStats, updateUserStats] = useState({
         health: 100,
         lost: false
@@ -42,10 +40,7 @@ const GameController = props => {
             manualSet(keyWord);
             getStoryLine(keyWord);
         }
-        setIsHome(true);
-        setIsPlaying(false)
-        didEnd(false);
-        isLast(false);
+        changeTrack("home");
         updateUserStats({
             health: 100,
             lost: false
@@ -92,8 +87,10 @@ const GameController = props => {
         const long = position.coords.longitude;
         const lat = position.coords.latitude;
         axios.get('https://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+long+'&appid='+apiKey).then(results => {
-          setWeather(iconPicker(results.data))
-          getStoryLine(weather[2])
+            const info = iconPicker(results.data)
+            console.log(info)
+          setWeather(info)
+          getStoryLine(info[2])
         })
     }
 
@@ -107,81 +104,70 @@ const GameController = props => {
     const getStoryLine = (category) => {
         axios.get(pingURL+'/story/'+category).then(res => {
             let storyLine = formatData(res.data)
-            setStoryLeft([...storyLine]);
             setStory(storyLine);
+            changeTrack("home");
         })
     }
 
-    useEffect = (() => {
+    useEffect(() => {
+        // Initial render (equivalent to componentDidMount)
         getLocation();
-    }, [])
+    }, []);
 
     useEffect( () => {
+        // Triggers re-render of screen every time tracker value is reset.
         console.log("Changes were made")
-    }, [isHome, isPlaying, load, ended])
+    }, [tracker])
 
-    const change = () => {
-        setIsHome(!isHome);
-        setIsPlaying(!isPlaying);
+    const change = (trackName) => {
+        // Basic change track function
+        changeTrack(trackName);
     }
 
-    const lose = (healthLoss, home) => {
+    const lose = (healthLoss, trackName) => {
 
-        let goHome = home;
         let newHealth = userStats.health - healthLoss
-        let theyLost = false;
-        let ended = false;
-        let keepPlaying = !home;
+
         if (newHealth <= 0) {
-            theyLost = true;
-            newHealth = 0;
-            ended = true;
-            keepPlaying = false
-            goHome = false
+            //Checks if the player lost the game
+            updateUserStats({
+                health: 0,
+                lost: true
+            })
+            changeTrack("end");
         }
-        if (this.state.lastStory && newHealth > 0) {
-            setIsHome(false)
-            didEnd(true);
-            setIsPlaying(false);
+        else if (lastStory && newHealth > 0) {
+            changeTrack("end");
             updateUserStats({
                 health: newHealth,
                 lost: false
             })
         } else {
-            let last = false;
-            let newArr = storyLeft.slice(1);
-            if (newArr[0] === story[story.length-1]) {
-                lastStory = true
+            if (storyLeft === story.length-1) {
+                isLast(true)
             }
-            setIsHome(goHome);
-            didEnd(ended);
-            setStoryLeft(newArr);
-            setIsPlaying(keepPlaying);
-            isLast(last);
             updateUserStats({
                 health: newHealth,
-                lost: theyLost
+                lost: false
             })
         }
     }
 
-    const startGame = () => {
-        isLoading(false);
-        setIsHome(true);
-    }
-
-        if (isHome) {
-            return (
-                <Main popSetter={(x) => popSetter(x)} population={population} health={userStats} weather={weather} story={story} storyLeft={storyLeft} change={() => change()}/>
-            )
-        } else if (isPlaying) {
-            return <Display lastStory={lastStory} health={userStats} story={storyLeft[0]} change={() => change()} lose={(i,x) => lose(i,x)} nextStory={() => nextStory()}/>;
-        } else if (ended) {
+    //Depending on tracker state the game controller renders a screen
+    switch(tracker) {
+        case "home":
+            return <Main popSetter={(x) => popSetter(x)} population={population} health={userStats} weather={weather} story={story} storyLeft={storyLeft} change={() => change()}/>
+            break;
+        case "playing":
+          return <Display lastStory={lastStory} health={userStats} story={storyLeft[0]} change={() => change()} lose={(i,x) => lose(i,x)} nextStory={() => console.log("next")}/>;
+          break;
+        case "end":
             return <EndScreen weather={weather} stats={userStats} refresh={(x) => {refresh(x)}}/>
-        }
-        else {
-            return <Loading startGame={() => startGame()}/>
-        }
+            break;
+        default:
+          // Loading screen is default
+          return <Loading />
+      }
 }
 
 export default GameController;
