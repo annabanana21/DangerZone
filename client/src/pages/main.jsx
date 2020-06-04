@@ -4,17 +4,17 @@ import News from '../components/News/News';
 import StoryBoard from '../components/StoryBoard/StoryBoard';
 import Health from '../components/Health/Health';
 
-class Main extends React.Component {
+function Main(props) {
 
-    render() {
-        return (
-            <main className='page'>
-                <News popSetter={this.props.popSetter} weather={this.props.weather} population={this.props.population}/>
-                <StoryBoard story={this.props.story} storyLeft={this.props.storyLeft} change={this.props.change}/>
-                <div className='page__health'><Health health={this.props.health.health}/></div>
-            </main>
-        )
-    }
+    const {popSetter, weather, population, story, storyLeft, change, health} = props;
+
+    return (
+        <main className='page'>
+            <News popSetter={popSetter} weather={weather} population={population}/>
+            <StoryBoard story={story} storyLeft={storyLeft} change={change}/>
+            <div className='page__health'><Health health={health.health}/></div>
+        </main>
+    )
 }
 
 export default Main;

@@ -156,7 +156,7 @@ const GameController = props => {
     //Depending on tracker state the game controller renders a screen
     switch(tracker) {
         case "home":
-            return <Main popSetter={(x) => popSetter(x)} population={population} health={userStats} weather={weather} story={story} storyLeft={storyLeft} change={() => change()}/>
+            return <Main popSetter={(x) => popSetter(x)} population={population} health={userStats} weather={weather} story={story} storyLeft={storyLeft} change={change}/>
             break;
         case "playing":
           return <Display lastStory={lastStory} health={userStats} story={storyLeft[0]} change={() => change()} lose={(i,x) => lose(i,x)} nextStory={() => console.log("next")}/>;
