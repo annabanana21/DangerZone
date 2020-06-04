@@ -117,7 +117,7 @@ const GameController = props => {
     useEffect( () => {
         // Triggers re-render of screen every time tracker value is reset.
         console.log("Changes were made")
-    }, [tracker])
+    }, [tracker, storyLeft])
 
     const change = (trackName) => {
         // Basic change track function
@@ -153,13 +153,17 @@ const GameController = props => {
         }
     }
 
+    const nextStory = () => {
+        setStoryLeft(storyLeft+1)
+    }
+
     //Depending on tracker state the game controller renders a screen
     switch(tracker) {
         case "home":
             return <Main popSetter={(x) => popSetter(x)} population={population} health={userStats} weather={weather} story={story} storyLeft={storyLeft} change={change}/>
             break;
         case "playing":
-          return <Display lastStory={lastStory} health={userStats} story={storyLeft[0]} change={() => change()} lose={(i,x) => lose(i,x)} nextStory={() => console.log("next")}/>;
+          return <Display lastStory={lastStory} health={userStats} story={story[storyLeft]} change={change} lose={(i,x) => lose(i,x)} nextStory={nextStory}/>;
           break;
         case "end":
             return <EndScreen weather={weather} stats={userStats} refresh={(x) => {refresh(x)}}/>
