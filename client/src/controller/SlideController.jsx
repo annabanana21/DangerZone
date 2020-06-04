@@ -1,53 +1,38 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Complete from '../components/Complete/Complete';
 import Slide from '../components/Slide/Slide';
 
-class SlideController extends React.Component {
+const SlideController = props => {
 
-    state = {
-        stage: '',
-        finish: false
-    }
 
-    componentDidMount() {
-        this.setState({
-            stage: this.props.story.tree.root
-        })
-    }
+    let [stage, setStage] = useState('');
+    let [finish, setFinish] = useState(false);
 
-    componentDidUpdate(prevProps) {
-        if (prevProps.story !== this.props.story) {
-            this.setState({
-                stage: this.props.story.tree.root,
-                finish: false
-            })
-        }
-    }
+    useEffect(()=> {
+        setFinish(false)
+        setStage(props.story.tree.root);
+    }, [props.story])
 
-    nextSlide(slide) {
+    useEffect(() => {
+
+    }, [stage, finish])
+
+
+    const nextSlide = (slide) => {
+
         if (slide.right || slide.left) {
-            this.setState(
-                {
-                    stage: slide
-                }
-            )
+            setStage(slide);
         } else {
-            this.setState(
-                {
-                    finish: true,
-                    stage: slide
-                }
-            )
+            setStage(slide);
+            setFinish(true);
         }
     }
 
-    render() {
-        if (!this.state.finish) {
-            return <Slide story={this.state.stage} nextHandler={(slide) => this.nextSlide(slide)}/>
-        } else {
-            return <Complete lastStory={this.props.lastStory} health={this.props.health} story={this.state.stage} change={this.props.change} lose={this.props.lose} nextStory={this.props.nextStory}/>
-        } 
-    }
+    if (!finish) {
+        return <Slide story={stage} nextHandler={nextSlide}/>
+    } else {
+        return <Complete lastStory={props.lastStory} health={props.health} story={stage} change={props.change} lose={props.lose} nextStory={props.nextStory}/>
+    } 
 }
 
 export default SlideController;
