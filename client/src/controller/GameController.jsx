@@ -124,11 +124,12 @@ const GameController = props => {
         changeTrack(trackName);
     }
 
-    const lose = (healthLoss, trackName) => {
+    const lose = (healthLoss, lostTheGame, trackName) => {
 
         let newHealth = userStats.health - healthLoss
+        console.log("track:", trackName)
 
-        if (newHealth <= 0) {
+        if (lostTheGame) {
             //Checks if the player lost the game
             updateUserStats({
                 health: 0,
@@ -137,19 +138,25 @@ const GameController = props => {
             changeTrack("end");
         }
         else if (lastStory && newHealth > 0) {
-            changeTrack("end");
             updateUserStats({
                 health: newHealth,
                 lost: false
             })
+            changeTrack("end");
         } else {
-            if (storyLeft === story.length-1) {
+            let left = storyLeft+1
+            setStoryLeft(left)
+            if (left === story.length-1) {
                 isLast(true)
             }
             updateUserStats({
                 health: newHealth,
                 lost: false
             })
+            console.log(trackName)
+            if (trackName) {
+                change(trackName)
+            }
         }
     }
 
@@ -163,7 +170,7 @@ const GameController = props => {
             return <Main popSetter={(x) => popSetter(x)} population={population} health={userStats} weather={weather} story={story} storyLeft={storyLeft} change={change}/>
             break;
         case "playing":
-          return <Display lastStory={lastStory} health={userStats} story={story[storyLeft]} change={change} lose={(i,x) => lose(i,x)} nextStory={nextStory}/>;
+          return <Display lastStory={lastStory} health={userStats} story={story[storyLeft]} change={change} lose={lose} nextStory={nextStory}/>;
           break;
         case "end":
             return <EndScreen weather={weather} stats={userStats} refresh={(x) => {refresh(x)}}/>
