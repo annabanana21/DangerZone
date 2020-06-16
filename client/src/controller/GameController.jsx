@@ -111,7 +111,7 @@ const GameController = props => {
 
     useEffect(() => {
         // Initial render (equivalent to componentDidMount)
-        getLocation();
+        //getLocation();
     }, []);
 
     useEffect( () => {
@@ -164,6 +164,7 @@ const GameController = props => {
         setStoryLeft(storyLeft+1)
     }
 
+
     //Depending on tracker state the game controller renders a screen
     switch(tracker) {
         case "home":
@@ -177,7 +178,7 @@ const GameController = props => {
             break;
         default:
           // Loading screen is default
-          return <Loading />
+          return <Loading getLocation={getLocation}/>
       }
 }
 
