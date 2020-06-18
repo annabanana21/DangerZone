@@ -63,7 +63,7 @@
     &__screen {
         height: fit-content;
         width: 30%;
-        padding: 2rem 1rem;
+        padding: 2rem ;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -91,6 +91,9 @@
         border-radius: 5px;
         color: white;
         margin-top: 1rem;
+        &:hover {
+            cursor: pointer;
+        }
     }
 }
 
