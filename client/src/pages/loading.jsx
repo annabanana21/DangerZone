@@ -7,18 +7,30 @@ const Loading = (props) => {
     let interval;
 
     useEffect(() =>{
-        setTimeout(() => {
-            // interval = setInterval(()=> {
-            //     if (navigator.geolocation) {
-            //         props.getLocation();
-            //     } else {
-            //         changeDialogue(false)
-            //     }
-            // }, 3000)
-        }, 3000);
+        // if (navigator.geolocation) {
+        //     switchDialog(props.getLocation)
+        // }
+        // interval = setInterval(()=> {
+        //     if (navigator.geolocation) {
+        //         switchDialog(props.getLocation)
+        //     }
+        // }, 1000)
 
         return () => clearInterval(interval);
     }, [])
+
+    useEffect(() => {
+
+    }, [dialog])
+
+    const switchDialog = (func) => {
+        changeDialogue(false);
+        let cover = document.querySelector('.cover');
+        cover.classList.remove("cover")
+        setTimeout(()=> {
+            func()
+        }, 3000)
+    }
 
         return (
             <div className='load'>
@@ -42,7 +54,8 @@ const Loading = (props) => {
                                 <h4>Permission Request</h4>
                                 <p>In order to use the location based features you must allow location services.
                                 Otherwise click below to continue without them.</p>
-                                <div className='load__button'>Continue Anyways</div>
+                                <div className='load__button' onClick={() => switchDialog(props.getLocation)}>Use Location</div>
+                                <div className='load__button' onClick={() => switchDialog(props.randomReset)}>Continue Anyways</div>
                             </div>
                     }
                 </div>

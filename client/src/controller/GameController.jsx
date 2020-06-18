@@ -47,6 +47,30 @@ const GameController = props => {
         })
     }
 
+    const randomReset = () => {
+        const rand = Math.floor(Math.random() * games.length);
+        const keyword = games[rand][2];
+        let temp;
+        switch(keyword) {
+            case "wind":
+                temp = 15;
+                break;
+            case "freeze":
+                temp = -60;
+                break;
+            default:
+                temp = 20
+        }
+
+        setWeather([...games[rand], temp])
+        getStoryLine(keyword)
+        changeTrack("home");
+        updateUserStats({
+            health: 100,
+            lost: false
+        })
+    }
+
     const manualSet = (keyWord) => {
         /*Makes updates to weather when game is manually reset
             - Only relevant when deep freeze manipulates temperature */
@@ -178,7 +202,7 @@ const GameController = props => {
             break;
         default:
           // Loading screen is default
-          return <Loading getLocation={getLocation}/>
+          return <Loading getLocation={getLocation} randomReset={randomReset}/>
       }
 }
 
