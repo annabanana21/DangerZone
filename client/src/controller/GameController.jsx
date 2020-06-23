@@ -11,6 +11,18 @@ import cold from '../assets/Icons/ColdWave.svg';
 import tornado from '../assets/Icons/Hurricane.svg';
 const pingURL = process.env.REACT_APP_BACKEND_SERVER || 'http://localhost:8080';
 
+class Story {
+    constructor(value, story, leftOption, rightOption, loss) {
+        this.value = value;
+        this.story = story;
+        this.leftOption = leftOption;
+        this.rightOption = rightOption;
+        this.left = null;
+        this.right = null;
+        this.loss = loss;
+    }
+}
+
 const GameController = props => {
 
     //TODO: Refine tracker to use strings to indicate where user is
@@ -21,7 +33,7 @@ const GameController = props => {
     let [storyLeft, setStoryLeft] = useState(0);
     let [userStats, updateUserStats] = useState({
         health: 100,
-        lost: false
+        lost: false,
     });
     let [weather, setWeather] = useState([]);
     let [population, setPopulation] = useState(Math.floor(Math.random() * 2000000) + 250000);
@@ -41,6 +53,7 @@ const GameController = props => {
             getStoryLine(keyWord);
         }
         changeTrack("home");
+        isLast(false);
         updateUserStats({
             health: 100,
             lost: false
@@ -63,7 +76,8 @@ const GameController = props => {
         }
 
         setWeather([...games[rand], temp])
-        getStoryLine(keyword)
+        getStoryLine(keyword);
+        isLast(false);
         changeTrack("home");
         updateUserStats({
             health: 100,
@@ -128,6 +142,7 @@ const GameController = props => {
     const getStoryLine = (category) => {
         axios.get(pingURL+'/story/'+category).then(res => {
             let storyLine = formatData(res.data)
+            setStoryLeft(0);
             setStory(storyLine);
             changeTrack("home");
         })
