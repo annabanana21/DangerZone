@@ -15,7 +15,6 @@ const Display = props => {
     useEffect(() => {
         setIntro(true)
         setShowButton(false)
-        console.log(audio)
         if (audio) {
             audio.pause()
         }
@@ -29,6 +28,7 @@ const Display = props => {
 
         return () => {
             audio.pause();
+            audio = null;
         }
     }, [props.story]);
 

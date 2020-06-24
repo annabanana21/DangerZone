@@ -30,8 +30,9 @@
         justify-content: center;
         position: relative;
         margin-top: 1.5rem;
-        height: 70%;
+        margin-left: 10%;
     }
+
 
     &__visual {
         display: inline-block;
@@ -109,4 +110,7 @@
     width: 100%;
     background-color: rgba(211,211,211, 0.5);
     z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

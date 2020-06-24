@@ -7,11 +7,9 @@ const Complete = props => {
     let [completed, setComplete] = useState(false);
     let [died, setDeathStatus] = useState(false);
     let [health, setHealth] = useState(props.health.health);
-    let [interval, setPause] = useState('');
 
     const timerToClearSomewhere = useRef(false)
     function callback() {
-        console.log("i'm running")
         setHealth(health--);
     }
 
@@ -22,14 +20,12 @@ const Complete = props => {
 
         //If health dips below 0 hide home and next button and prepare for losing screen
         if (props.health.health - props.story.loss*100 <= 0) {
-            console.log("I died")
             setDeathStatus(true);
             setTimeout(() => {
                 props.lose(props.story.loss*100, true);
             }, 6000)
         //User encounters the last scenario in the story prepare for winning screen
         } else if (props.lastStory) {
-            console.log("last story")
             setComplete(true);
             setTimeout(() => {
                 props.lose(props.story.loss*100, false);
@@ -43,7 +39,6 @@ const Complete = props => {
 
     useEffect(() => {
         //Stop showing health decrease when the health meter has shown the complete percent lost
-        console.log("health: ", health)
         if (timerToClearSomewhere && (health === props.health.health - props.story.loss*100 || health === 0)) {
             clearInterval(timerToClearSomewhere.current)
         }
@@ -52,11 +47,11 @@ const Complete = props => {
 
     return (
         <div className='complete'>
+            {!died ? <h3 className='complete__status--success'>SCENARIO COMPLETE</h3> : <h3 className='complete__status--fail'>SCENARIO FAILED</h3>}
             <div className='complete__prompt'>{props.story.story}</div>
             <Health health={health}/>
             {!died && !completed && <div className='complete__wrap'>
                 <div className='complete__button' onClick={() => {
-                    console.log("Ready to go home")
                     props.lose(props.story.loss*100, false, "home")}}>Home</div>
                 <div className='complete__button' onClick={() => props.lose(props.story.loss*100, false, false)}>Next</div>
             </div>}
