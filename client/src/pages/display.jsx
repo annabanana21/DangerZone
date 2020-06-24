@@ -1,58 +1,44 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './display.scss';
 import BackgroundVideo from '../components/BackgroundVideo/BackgroundVideo';
 import SlideController from '../controller/SlideController';
 import Intro from '../components/Intro/Intro';
 
-class Display extends React.Component {
+const Display = props => {
 
-    state={
-        intro: true,
-        showButton: false
-    }
+    let [intro, setIntro] = useState(true);
+    let [showButton, setShowButton] = useState(false);
+    let audio = false;
 
-    pingURL = process.env.REACT_APP_BACKEND_SERVER || 'http://localhost:8080';
+    const pingURL = process.env.REACT_APP_BACKEND_SERVER || 'http://localhost:8080';
 
-    componentDidMount() {
-        this.audio = new Audio(this.pingURL+this.props.story.audio);
-        this.audio.load();
-        this.audio.loop = true;
-        this.playAudio();
-
-        setTimeout(() => {
-            this.setState({
-                showButton: true
-            })
-        }, 6000)
-    }
-
-    componentWillUnmount() {
-        this.audio.pause();
-    }
-
-    componentDidUpdate(prevProps) {
-        if (prevProps.story !== this.props.story) {
-            this.audio.pause();
-            this.audio = new Audio(this.pingURL+this.props.story.audio);
-            this.audio.load();
-            this.audio.loop = true;
-            this.playAudio();
-
-            this.setState({
-                intro: true,
-                showButton: false
-            })
-
-            setTimeout(() => {
-                this.setState({
-                    showButton: true
-                })
-            }, 4000)
+    useEffect(() => {
+        setIntro(true)
+        setShowButton(false)
+        if (audio) {
+            audio.pause()
         }
-    }
+        audio = new Audio(pingURL+props.story.audio);
+        audio.load();
+        audio.loop = true;
+        playAudio();
+        setTimeout(() => {
+            setShowButton(true);
+        }, 4000)
 
-    playAudio() {
-        const audioPromise = this.audio.play()
+        return () => {
+            audio.pause();
+            audio = null;
+        }
+    }, [props.story]);
+
+    useEffect(()=> {
+
+    }, [intro, showButton])
+
+
+    const playAudio = () => {
+        const audioPromise = audio.play()
         if (audioPromise !== undefined) {
           audioPromise
             .then(_ => {
@@ -65,18 +51,14 @@ class Display extends React.Component {
         }
     }
 
-    startStory() {
-        this.setState({
-            intro: false
-        })
+    const startStory = () => {
+        setIntro(false)
     }
 
-    render() {
-        if (this.state.intro) {
-            return <Intro showButton={this.state.showButton} intro={this.props.story.intro} startStory={() => this.startStory()}/>
-        } else {
-            return <BackgroundVideo story={this.props.story}><SlideController lastStory={this.props.lastStory} health={this.props.health} lose={this.props.lose} story={this.props.story} change={this.props.change} nextStory={this.props.nextStory}/></BackgroundVideo>  
-        }
+    if (intro) {
+        return <Intro showButton={showButton} intro={props.story.intro} startStory={startStory}/>
+    } else {
+        return <BackgroundVideo story={props.story}><SlideController lastStory={props.lastStory} health={props.health} lose={props.lose} story={props.story} change={props.change} nextStory={props.nextStory}/></BackgroundVideo>  
     }
 }
 

@@ -72,7 +72,7 @@ class EndScreen extends React.Component {
                         </>
                         )
                 }
-                <div className='end__button' onClick={() => this.props.refresh(null)}>PLAY AGAIN</div>
+                <div className='end__button' onClick={() => this.props.refresh(this.props.weather[2])}>PLAY AGAIN</div>
             </div>
         )
     }

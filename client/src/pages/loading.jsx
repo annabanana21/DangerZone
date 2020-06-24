@@ -1,28 +1,68 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './loading.scss';
+import open from '../assets/open.png';
 
-class Loading extends React.Component {
-    componentDidMount() {
-        setTimeout(() => {
-            this.props.startGame()
-        }, 4000)
+const Loading = (props) => {
+    let [dialog, changeDialogue] = useState(true);
+    let [locationReceived, setStatus] = useState(false);
+    let interval;
 
+    useEffect(() =>{
+        if (navigator.geolocation) {
+            switchDialog(props.getLocation)
+            setStatus(true);
+        } else {
+            interval = setInterval(()=> {
+                if (navigator.geolocation && !locationReceived) {
+                    switchDialog(props.getLocation);
+                    setStatus(true)
+                }
+            }, 1000)
+        }
+
+        return () => clearInterval(interval);
+    }, [])
+
+    useEffect(() => {
+
+    }, [dialog])
+
+    const switchDialog = (func) => {
+        let cover = document.querySelector('.load');
+        cover.setAttribute("style", "justify-content: flex-start");
+        changeDialogue(false);
+        setTimeout(()=> {
+            func()
+        }, 3000)
     }
 
-    render() {
         return (
             <div className='load'>
-                <div className='load__container'>
-                    <h2 className='load__title'>LOADING</h2>
-                    <div className='load__visual'>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </div>
+                    {
+                        !dialog &&
+                        <div className='load__container'>
+                        <h2 className='load__title'>LOADING</h2>
+                        <div className='load__visual'>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        </div>
+                    }
+                    {
+                        dialog && 
+                        <div className='cover'>
+                            <div className='load__screen'>
+                                <img className="load__icon" src={open}/>
+                                <h4>Permission Request</h4>
+                                <p>In order to use the location based features you must allow location services.
+                                Otherwise click below to continue without them.</p>
+                                <div className='load__button' onClick={() => switchDialog(props.randomReset)}>Continue Anyways</div>
+                            </div>
+                            </div>
+                    }
             </div>
         )
-    }
 }
 
 export default Loading;
