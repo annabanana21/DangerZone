@@ -3,7 +3,7 @@
 
 .complete {
     width: 600px;
-    height: 400px;
+    height: fit-content;
     background: url('../../assets/Paper-3.jpg');
     background-position: center;
     background-size: cover;
@@ -32,6 +32,7 @@
         align-items: center;
         height: 3rem;
         width: 7rem;
+        margin-top: 1rem;
 
         &:hover {
             cursor: pointer;
@@ -46,5 +47,23 @@
         padding: 0 1rem;
         text-align: center;
         font-size: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    &__status {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+
+        &--success {
+            @extend .complete__status;
+            color: #FECE0A;
+            text-shadow: 2px 2px #E04C3F;
+        }
+
+        &--fail {
+            @extend .complete__status;
+            color: #E04C3F;
+            text-shadow: 2px 2px black;
+        }
     }
 }

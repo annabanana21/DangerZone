@@ -15,7 +15,6 @@ const StoryBoard = props => {
     }
 
     useEffect(() => {
-        console.log("toggled")
     }, [displayBoard]);
 
     const stopPropagation = event => {
@@ -32,7 +31,7 @@ const StoryBoard = props => {
             } else if (index > storyLeft) {
                 display.push(<div className='story__row' key={uuid()}><div className='story__check'></div><h3 className='story__stage--blur'>{slide.title}</h3></div>)
             } else {
-                display.push(<div className='story__row' key={uuid()}><div className='story__check'><img src={check} className='story__mark' alt='Green check mark'/></div><h3 className='story__stage'>{story.title}</h3></div>)
+                display.push(<div className='story__row' key={uuid()}><div className='story__check'><img src={check} className='story__mark' alt='Green check mark'/></div><h3 className='story__stage'>{slide.title}</h3></div>)
             }
         })
         return display;

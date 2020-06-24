@@ -11,18 +11,6 @@ import cold from '../assets/Icons/ColdWave.svg';
 import tornado from '../assets/Icons/Hurricane.svg';
 const pingURL = process.env.REACT_APP_BACKEND_SERVER || 'http://localhost:8080';
 
-class Story {
-    constructor(value, story, leftOption, rightOption, loss) {
-        this.value = value;
-        this.story = story;
-        this.leftOption = leftOption;
-        this.rightOption = rightOption;
-        this.left = null;
-        this.right = null;
-        this.loss = loss;
-    }
-}
-
 const GameController = props => {
 
     //TODO: Refine tracker to use strings to indicate where user is
@@ -45,7 +33,6 @@ const GameController = props => {
     const refresh = (keyWord) => {
         /*Determine whether the app manually starts based on user choice of storyline
         OR starts based on computer location (default process when app loads)*/ 
-        console.log(keyWord)
         if (!keyWord) {
             getLocation();
         } else {
@@ -78,6 +65,7 @@ const GameController = props => {
         setWeather([...games[rand], temp])
         getStoryLine(keyword);
         isLast(false);
+
         changeTrack("home");
         updateUserStats({
             health: 100,
@@ -126,7 +114,6 @@ const GameController = props => {
         const lat = position.coords.latitude;
         axios.get('https://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+long+'&appid='+apiKey).then(results => {
             const info = iconPicker(results.data)
-            console.log(info)
           setWeather(info)
           getStoryLine(info[2])
         })
@@ -144,18 +131,13 @@ const GameController = props => {
             let storyLine = formatData(res.data)
             setStoryLeft(0);
             setStory(storyLine);
+
             changeTrack("home");
         })
     }
 
-    useEffect(() => {
-        // Initial render (equivalent to componentDidMount)
-        //getLocation();
-    }, []);
-
     useEffect( () => {
         // Triggers re-render of screen every time tracker value is reset.
-        console.log("Changes were made")
     }, [tracker, storyLeft])
 
     const change = (trackName) => {
@@ -166,7 +148,6 @@ const GameController = props => {
     const lose = (healthLoss, lostTheGame, trackName) => {
 
         let newHealth = userStats.health - healthLoss
-        console.log("track:", trackName)
 
         if (lostTheGame) {
             //Checks if the player lost the game
@@ -192,7 +173,6 @@ const GameController = props => {
                 health: newHealth,
                 lost: false
             })
-            console.log(trackName)
             if (trackName) {
                 change(trackName)
             }
