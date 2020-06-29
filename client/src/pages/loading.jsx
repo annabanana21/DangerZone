@@ -4,23 +4,25 @@ import open from '../assets/open.png';
 
 const Loading = (props) => {
     let [dialog, changeDialogue] = useState(true);
-    let [locationReceived, setStatus] = useState(false);
     let interval;
 
-    useEffect(() =>{
-        if (navigator.geolocation) {
-            switchDialog(props.getLocation)
-            setStatus(true);
-        } else {
-            interval = setInterval(()=> {
-                if (navigator.geolocation && !locationReceived) {
-                    switchDialog(props.getLocation);
-                    setStatus(true)
-                }
-            }, 1000)
-        }
+    const locationAllowed = () => {
+        navigator.permissions && navigator.permissions.query({name: 'geolocation'})
+        .then(function(PermissionStatus) {
+            if (PermissionStatus.state === 'granted') {
+                //If permission is allowed begin information request
+                switchDialog(props.getLocation);
+            } else  {
+                // prompt - not yet grated or denied
+            }
+        })
+    }
 
-        return () => clearInterval(interval);
+
+    useEffect(() =>{
+        interval = setInterval(()=> {
+            locationAllowed()
+        }, 1000)
     }, [])
 
     useEffect(() => {
@@ -30,6 +32,7 @@ const Loading = (props) => {
     const switchDialog = (func) => {
         let cover = document.querySelector('.load');
         cover.setAttribute("style", "justify-content: flex-start");
+        clearInterval(interval)
         changeDialogue(false);
         setTimeout(()=> {
             func()
