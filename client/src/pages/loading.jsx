@@ -3,7 +3,7 @@ import './loading.scss';
 import open from '../assets/open.png';
 
 const Loading = (props) => {
-    let [dialog, changeDialogue] = useState(true);
+    let [dialog, changeDialogue] = useState(false);
     let interval;
 
     const locationAllowed = () => {
@@ -15,6 +15,7 @@ const Loading = (props) => {
             } else  {
                 // prompt - not yet grated or denied
                 navigator.geolocation.getCurrentPosition(() => {}, () => {}, {});
+                changeDialogue(true);
             }
         })
     }
@@ -31,19 +32,18 @@ const Loading = (props) => {
     }, [dialog])
 
     const switchDialog = (func) => {
-        let cover = document.querySelector('.load');
-        cover.setAttribute("style", "justify-content: flex-start");
         clearInterval(interval)
         changeDialogue(false);
         setTimeout(()=> {
             func()
-        }, 3000)
+        }, 2000)
     }
 
         return (
             <div className='load'>
                     {
                         !dialog &&
+                        <div className='load__wrap--alt'>
                         <div className='load__container'>
                         <h2 className='load__title'>LOADING</h2>
                         <div className='load__visual'>
@@ -52,9 +52,11 @@ const Loading = (props) => {
                             <span></span>
                         </div>
                         </div>
+                        </div>
                     }
                     {
                         dialog && 
+                        <div className='load__wrap'>
                         <div className='cover'>
                             <div className='load__screen'>
                                 <img className="load__icon" src={open}/>
@@ -63,7 +65,8 @@ const Loading = (props) => {
                                 Otherwise click below to continue without them.</p>
                                 <div className='load__button' onClick={() => switchDialog(props.randomReset)}>Continue Anyways</div>
                             </div>
-                            </div>
+                        </div>
+                        </div>
                     }
             </div>
         )
