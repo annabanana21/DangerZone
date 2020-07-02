@@ -19,6 +19,7 @@ const Loading = (props) => {
             }
             else  {
                 // prompt - not yet grated or denied
+                navigator.geolocation.getCurrentPosition(() => {}, () => {}, {});
                 let obj = navigator.geolocation;
                 if (!obj) {
                     changeDialogue(true);
@@ -32,7 +33,7 @@ const Loading = (props) => {
         locationAllowed();
         interval = setInterval(()=> {
             locationAllowed()
-        }, 1000);
+        }, 1000)
     }, [])
 
     useEffect(() => {
