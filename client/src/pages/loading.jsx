@@ -13,18 +13,19 @@ const Loading = (props) => {
             if (PermissionStatus.state === 'granted') {
                 //If permission is allowed begin information request
                 switchDialog(props.getLocation);
-            } else  {
+            } else if (PermissionStatus.state === 'denied') {
+                //Do nothing
+            }
+            else  {
                 // prompt - not yet grated or denied
                 navigator.geolocation.getCurrentPosition(() => {}, () => {}, {});
-                if (!manual) {
-                    changeDialogue(true);
-                }
             }
         })
     }
 
 
     useEffect(() =>{
+        navigator.geolocation.getCurrentPosition(() => {}, () => {changeDialogue(true)}, {});
         interval = setInterval(()=> {
             locationAllowed()
         }, 1000)
