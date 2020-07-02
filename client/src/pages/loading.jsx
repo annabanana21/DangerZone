@@ -4,6 +4,7 @@ import open from '../assets/open.png';
 
 const Loading = (props) => {
     let [dialog, changeDialogue] = useState(false);
+    let manual = false;
     let interval;
 
     const locationAllowed = () => {
@@ -15,7 +16,9 @@ const Loading = (props) => {
             } else  {
                 // prompt - not yet grated or denied
                 navigator.geolocation.getCurrentPosition(() => {}, () => {}, {});
-                changeDialogue(true);
+                if (!manual) {
+                    changeDialogue(true);
+                }
             }
         })
     }
@@ -63,7 +66,10 @@ const Loading = (props) => {
                                 <h4>Permission Request</h4>
                                 <p>In order to use the location based features you must allow location services.
                                 Otherwise click below to continue without them.</p>
-                                <div className='load__button' onClick={() => switchDialog(props.randomReset)}>Continue Anyways</div>
+                                <div className='load__button' onClick={() => {
+                                    manual = true;
+                                    switchDialog(props.randomReset);
+                                    }}>Continue Anyways</div>
                             </div>
                         </div>
                         </div>
