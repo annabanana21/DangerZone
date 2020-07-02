@@ -25,7 +25,7 @@ const Loading = (props) => {
 
 
     useEffect(() =>{
-        navigator.geolocation.getCurrentPosition(() => {}, () => {changeDialogue(true)}, {});
+        console.log(navigator.getLocation)
         interval = setInterval(()=> {
             locationAllowed()
         }, 1000)
