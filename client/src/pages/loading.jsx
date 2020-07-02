@@ -14,23 +14,25 @@ const Loading = (props) => {
                 //If permission is allowed begin information request
                 switchDialog(props.getLocation);
             } else if (PermissionStatus.state === 'denied') {
-                //Do nothing
+                //Begin manual reset
+                switchDialog(props.randomReset);
             }
             else  {
                 // prompt - not yet grated or denied
-                navigator.geolocation.getCurrentPosition(() => {}, () => {}, {});
+                let obj = navigator.geolocation;
+                if (!obj) {
+                    changeDialogue(true);
+                }
             }
         })
     }
 
 
     useEffect(() =>{
-        if (!navigator.getLocation) {
-            changeDialogue(true);
-        }
+        locationAllowed();
         interval = setInterval(()=> {
             locationAllowed()
-        }, 1000)
+        }, 1000);
     }, [])
 
     useEffect(() => {
