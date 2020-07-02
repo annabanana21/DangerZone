@@ -25,7 +25,9 @@ const Loading = (props) => {
 
 
     useEffect(() =>{
-        console.log(navigator.getLocation)
+        if (!navigator.getLocation) {
+            changeDialogue(true);
+        }
         interval = setInterval(()=> {
             locationAllowed()
         }, 1000)
