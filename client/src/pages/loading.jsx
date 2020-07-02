@@ -14,6 +14,7 @@ const Loading = (props) => {
                 switchDialog(props.getLocation);
             } else  {
                 // prompt - not yet grated or denied
+                navigator.geolocation.getCurrentPosition(() => {}, () => {}, {});
             }
         })
     }
