@@ -25,25 +25,32 @@
         align-items: center;
         justify-content: center;
         height: 100%;
-        width: 40vw;
-        max-width: 539px;
+       width: fit-content;
 
         position: relative;
 
         @include desktop {
             max-height: 800px;
+            min-width: 500px
         }
     }
 
     &__write {
         height: 60%;
-        width: 75%;
+        width: 80%;
         background-color: white;
         position: absolute;
         top: 23%;
         display: flex;
         flex-direction: column;
         align-items: center;
+
+        @include large{
+            width: 65%;
+        }
+        @include large-desktop {
+            width: 70%;
+        }
     }
 
     &__title {

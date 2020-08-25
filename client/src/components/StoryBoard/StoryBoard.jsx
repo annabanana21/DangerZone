@@ -8,11 +8,14 @@ import uuid from 'uuid-random';
 
 const StoryBoard = props => {
 
-    let [displayBoard, toggle] = useState(false)
+    let [displayBoard, toggle] = useState(false);
+    let [width, setWidth] = useState(true);
+    let interval;
 
     const show = () => {
         toggle(!displayBoard)
     }
+
 
     useEffect(() => {
     }, [displayBoard]);
@@ -36,7 +39,6 @@ const StoryBoard = props => {
         })
         return display;
     }
-
 
         return (
             <div>

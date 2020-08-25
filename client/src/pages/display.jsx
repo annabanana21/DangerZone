@@ -11,7 +11,7 @@ const Display = props => {
     let audio = false;
 
     //const pingURL = process.env.REACT_APP_BACKEND_SERVER || 'http://localhost:8080';
-    const pingURL = "https://salty-forest-96845.herokuapp.com";
+    const pingURL = process.env.REACT_APP_BACKEND;
 
     useEffect(() => {
         setIntro(true)

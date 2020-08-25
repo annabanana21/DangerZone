@@ -3,7 +3,8 @@ import './loading.scss';
 import open from '../assets/open.png';
 
 const Loading = (props) => {
-    let [dialog, changeDialogue] = useState(true);
+    let [dialog, changeDialogue] = useState(false);
+    let manual = false;
     let interval;
 
     const locationAllowed = () => {
@@ -12,14 +13,25 @@ const Loading = (props) => {
             if (PermissionStatus.state === 'granted') {
                 //If permission is allowed begin information request
                 switchDialog(props.getLocation);
-            } else  {
+            } else if (PermissionStatus.state === 'denied') {
+                //Begin manual reset
+                switchDialog(props.randomReset);
+            }
+            else  {
                 // prompt - not yet grated or denied
+                navigator.geolocation.getCurrentPosition(() => {}, () => {}, {});
             }
         })
     }
 
 
     useEffect(() =>{
+        setTimeout(() => {
+            if (navigator.geolocation !== null) {
+                console.log("here")
+                changeDialogue(true)
+            }
+        }, 1000)
         interval = setInterval(()=> {
             locationAllowed()
         }, 1000)
@@ -30,19 +42,18 @@ const Loading = (props) => {
     }, [dialog])
 
     const switchDialog = (func) => {
-        let cover = document.querySelector('.load');
-        cover.setAttribute("style", "justify-content: flex-start");
         clearInterval(interval)
         changeDialogue(false);
         setTimeout(()=> {
             func()
-        }, 3000)
+        }, 2000)
     }
 
         return (
             <div className='load'>
                     {
                         !dialog &&
+                        <div className='load__wrap--alt'>
                         <div className='load__container'>
                         <h2 className='load__title'>LOADING</h2>
                         <div className='load__visual'>
@@ -51,18 +62,24 @@ const Loading = (props) => {
                             <span></span>
                         </div>
                         </div>
+                        </div>
                     }
                     {
                         dialog && 
+                        <div className='load__wrap'>
                         <div className='cover'>
                             <div className='load__screen'>
                                 <img className="load__icon" src={open}/>
                                 <h4>Permission Request</h4>
                                 <p>In order to use the location based features you must allow location services.
                                 Otherwise click below to continue without them.</p>
-                                <div className='load__button' onClick={() => switchDialog(props.randomReset)}>Continue Anyways</div>
+                                <div className='load__button' onClick={() => {
+                                    manual = true;
+                                    switchDialog(props.randomReset);
+                                    }}>Continue Anyways</div>
                             </div>
-                            </div>
+                        </div>
+                        </div>
                     }
             </div>
         )
