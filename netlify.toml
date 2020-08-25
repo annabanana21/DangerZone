@@ -1,0 +1,12 @@
+# Settings in the [build] context are global and are applied to all contexts 
+# unless otherwise overridden by more specific contexts.  
+# Production context: all deploys from the Production branch set in your site's 
+# deploy contexts will inherit these settings.
+[context.master.environment]
+  # environment variables
+  REACT_APP_BACKEND_SERVER = "https://salty-forest-96845.herokuapp.com" 
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
