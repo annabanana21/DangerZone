@@ -4,8 +4,8 @@ import open from '../assets/open.png';
 
 const Loading = (props) => {
     let [dialog, changeDialogue] = useState(false);
+    let [interval, setTimer] = useState(null);
     let manual = false;
-    let interval;
 
     const locationAllowed = () => {
         navigator.permissions && navigator.permissions.query({name: 'geolocation'})
@@ -13,8 +13,9 @@ const Loading = (props) => {
             if (PermissionStatus.state === 'granted') {
                 //If permission is allowed begin information request
                 switchDialog(props.getLocation);
+                localStorage.setItem("isApproved", JSON.stringify(true))
             } else if (PermissionStatus.state === 'denied') {
-                //Begin manual reset
+                //Begin manual reset without location
                 switchDialog(props.randomReset);
             }
             else  {
@@ -26,15 +27,14 @@ const Loading = (props) => {
 
 
     useEffect(() =>{
-        setTimeout(() => {
-            if (navigator.geolocation !== null) {
-                console.log("here")
-                changeDialogue(true)
-            }
-        }, 1000)
-        interval = setInterval(()=> {
-            locationAllowed()
-        }, 1000)
+        if (localStorage.getItem("isApproved")) {
+            switchDialog(props.getLocation)
+        } else {
+            changeDialogue(true)
+            setTimer(setInterval(()=> {
+                locationAllowed()
+            }, 1000))
+        }
     }, [])
 
     useEffect(() => {
@@ -42,11 +42,13 @@ const Loading = (props) => {
     }, [dialog])
 
     const switchDialog = (func) => {
-        clearInterval(interval)
-        changeDialogue(false);
-        setTimeout(()=> {
-            func()
-        }, 2000)
+        if (interval) {
+            clearInterval(interval)
+        }
+        if (dialog) {
+            changeDialogue(false)
+        }
+        setTimeout(func, 2500)
     }
 
         return (
