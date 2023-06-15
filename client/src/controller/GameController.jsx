@@ -137,7 +137,7 @@ const GameController = (props) => {
             .catch((err) => {
                 //In case api key is unavailable
                 console.log(err);
-                const info = ['EARTHQUAKE WARNING', earth, 'earth', 20];
+                const info = ['EARTHQUAKE WARNING', earth, 'earth', 50];
                 setWeather(info);
                 getStoryLine(info[2]);
             });
