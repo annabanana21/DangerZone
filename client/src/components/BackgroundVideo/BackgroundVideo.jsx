@@ -3,16 +3,23 @@ import './BackgroundVideo.scss';
 
 const BackgroundVideo = (props) => {
     //const pingURL = process.env.REACT_APP_BACKEND_SERVER || 'http://localhost:8080';
-    const pingURL = "https://salty-forest-96845.herokuapp.com";
+    const pingURL = process.env.REACT_APP_BACKEND;
     if (!props.story.background) {
-        return null
+        return null;
     } else {
         return (
-            <div style={{backgroundImage: `url(${pingURL+props.story.background})`, backgroundPosition: 'center', backgroundSize: 'cover'}} className='video'>
+            <div
+                style={{
+                    backgroundImage: `url(${pingURL + props.story.background})`,
+                    backgroundPosition: 'center',
+                    backgroundSize: 'cover',
+                }}
+                className="video"
+            >
                 {props.children}
             </div>
-        )
+        );
     }
-}
+};
 
 export default BackgroundVideo;
