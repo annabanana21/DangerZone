@@ -54,6 +54,7 @@ const GameController = (props) => {
     };
 
     const randomReset = () => {
+        console.log('random reset!')
         const rand = Math.floor(Math.random() * games.length);
         const keyword = games[rand][2];
         let temp;
@@ -71,8 +72,6 @@ const GameController = (props) => {
         setWeather([...games[rand], temp]);
         getStoryLine(keyword);
         isLast(false);
-
-        changeTrack('home');
         updateUserStats({
             health: 100,
             lost: false,
@@ -114,7 +113,7 @@ const GameController = (props) => {
     const getCoordinates = (position) => {
         /*Retrieves user's coordinates and makes a request to the weather api. 
         Based on weather output a story line is selected*/
-
+        console.log('getting coordinates');
         const long = position.coords.longitude;
         const lat = position.coords.latitude;
         console.log(long + ' ' + lat);
@@ -144,9 +143,9 @@ const GameController = (props) => {
     };
 
     const getLocation = () => {
-        //TODO: prompt user to allow location access
+        //Check for location, default to randomizer if access denied
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(getCoordinates);
+            navigator.geolocation.getCurrentPosition(getCoordinates, randomReset);
         }
     };
 
@@ -220,7 +219,6 @@ const GameController = (props) => {
                     change={change}
                 />
             );
-            break;
         case 'playing':
             return (
                 <Display
@@ -232,7 +230,6 @@ const GameController = (props) => {
                     nextStory={nextStory}
                 />
             );
-            break;
         case 'end':
             return (
                 <EndScreen
@@ -243,7 +240,6 @@ const GameController = (props) => {
                     }}
                 />
             );
-            break;
         default:
             // Loading screen is default
             return (

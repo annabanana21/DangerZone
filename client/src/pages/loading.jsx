@@ -4,7 +4,6 @@ import open from '../assets/open.png';
 
 const Loading = (props) => {
     let [dialog, changeDialogue] = useState(false);
-    let [interval, setTimer] = useState(null);
     let manual = false;
 
     const locationAllowed = () => {
@@ -14,14 +13,15 @@ const Loading = (props) => {
                 .then(function (PermissionStatus) {
                     if (PermissionStatus.state === 'granted') {
                         //If permission is allowed begin information request
+                        console.log('secure location')
                         switchDialog(props.getLocation);
                         localStorage.setItem(
                             'isApproved',
                             JSON.stringify(true)
                         );
                     } else if (PermissionStatus.state === 'denied') {
-                        //Begin manual reset without location
-                        switchDialog(props.randomReset);
+                        //User must interact with pop-up option
+                        console.log('denied!!')
                     } else {
                         // prompt - not yet grated or denied
                         navigator.geolocation.getCurrentPosition(
@@ -35,27 +35,22 @@ const Loading = (props) => {
 
     useEffect(() => {
         if (localStorage.getItem('isApproved')) {
-            console.log('hi');
             switchDialog(props.getLocation);
         } else {
             changeDialogue(true);
-            setTimer(
-                setInterval(() => {
-                    locationAllowed();
-                }, 1000)
-            );
+            const intervalId = setInterval(() => {
+                locationAllowed();
+            }, 1000)
+            return () => {
+                clearInterval(intervalId);
+              };
         }
     }, []);
 
     useEffect(() => {}, [dialog]);
 
     const switchDialog = (func) => {
-        if (interval) {
-            clearInterval(interval);
-        }
-        if (dialog) {
-            changeDialogue(false);
-        }
+        changeDialogue(false);
         setTimeout(func, 2500);
     };
 
@@ -81,8 +76,7 @@ const Loading = (props) => {
                             <h4>Permission Request</h4>
                             <p>
                                 In order to use the location based features you
-                                must allow location services. Otherwise click
-                                below to continue without them.
+                                must allow location services. Otherwise your survival scenario will be chosen at random.
                             </p>
                             <div
                                 className="load__button"
